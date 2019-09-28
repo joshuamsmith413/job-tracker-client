@@ -3,14 +3,15 @@ import React from 'react';
 class SignUp extends React.Component {
 
   render() {
+    console.log(this.props)
     return (
       <div id="signup" >
         <h3>Sign Up</h3>
-        <form onSubmit={this.props.handleSignUp}>
+        <form id="signup-form" onSubmit={this.props.handleSignUp}>
           <label> Username: </label>
-          <input type="text" className="name" value={this.props.name} onChange={this.props.handleChange}></input>
+          <input type="text" name="name" value={this.props.fields.name} onChange={this.props.handleChange}></input>
           <label> Password: </label>
-          <input type="password" className="password" value={this.props.password} onChange={this.props.handleChange}></input>
+          <input type="password" name="password" value={this.props.fields.password} onChange={this.props.handleChange}></input>
           <input type="submit"></input>
         </form>
       </div>

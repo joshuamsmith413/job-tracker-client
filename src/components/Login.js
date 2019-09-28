@@ -1,12 +1,12 @@
 import React from 'react';
 
-class SignUp extends React.Component {
+class Login extends React.Component {
 
   render() {
-    return (
-      <div id="signup" >
-        <h3>Sign Up</h3>
-        <form onSubmit={this.props.handleSignUp}>
+    return(
+      <div id="Login">
+        <form onSubmit={this.props.handleLogin}>
+          <h3>Login</h3>
           <label> Username: </label>
           <input type="text" className="name" value={this.props.name} onChange={this.props.handleChange}></input>
           <label> Password: </label>
@@ -18,4 +18,4 @@ class SignUp extends React.Component {
   }
 }
 
-export default SignUp;
+export default Login;

@@ -1,6 +1,5 @@
 import React from 'react';
-import SignUp from '../components/SignUp.js';
-
+import AuthContainer from './AuthContainer.js';
 
 class MainContainer extends React.Component {
 
@@ -20,7 +19,7 @@ class MainContainer extends React.Component {
     console.log(this.state)
     return (
       <div id="MainContainer">
-        <SignUp />
+        <AuthContainer />
       </div>
     )
   };

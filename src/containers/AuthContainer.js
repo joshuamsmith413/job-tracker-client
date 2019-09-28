@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import SignUp from '../components/SignUp.js';
 import Login from '../components/Login.js';
 
@@ -34,7 +35,7 @@ class AuthContainer extends React.Component {
       console.log("giving you:",data.error)
       data.error ? alert(`${data.error}`) : alert(`Welcome ${this.state.fields.name}`)
     })
-    .then(console.log(document.getElementById("signup-form")))
+    .then(this.props.history.push("/"))
  }
 
 
@@ -49,4 +50,4 @@ class AuthContainer extends React.Component {
   }
 }
 
-export default AuthContainer;
+export default withRouter(AuthContainer);

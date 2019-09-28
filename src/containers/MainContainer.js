@@ -1,5 +1,7 @@
 import React from 'react';
 import AuthContainer from './AuthContainer.js';
+import Home from '../components/Home.js';
+import { Route, withRouter } from 'react-router-dom';
 
 class MainContainer extends React.Component {
 
@@ -19,10 +21,11 @@ class MainContainer extends React.Component {
     console.log(this.state)
     return (
       <div id="MainContainer">
-        <AuthContainer />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/auth" component={AuthContainer} />
       </div>
     )
   };
 };
 
-export default MainContainer;
+export default withRouter(MainContainer);

@@ -21,7 +21,6 @@ class AuthContainer extends React.Component {
 
  handleSignUp = e => {
    e.preventDefault()
-   console.log("what you entered",this.state.fields);
    fetch('http://localhost:3000/users', {
      method: "POST",
      headers: {
@@ -32,7 +31,6 @@ class AuthContainer extends React.Component {
    })
    .then(r => r.json())
    .then(data => {
-      console.log("giving you:",data.error)
       data.error ? alert(`${data.error}`) : alert(`Welcome ${this.state.fields.name}`)
     })
     .then(this.props.history.push("/"))

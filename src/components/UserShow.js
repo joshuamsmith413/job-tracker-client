@@ -5,7 +5,7 @@ class UserShow extends React.Component {
   render() {
     return(
       <div id='UserShow'>
-        {`hello from `}
+        {`hello from ${this.props.currentUser.name}`}
       </div>
     )
   }

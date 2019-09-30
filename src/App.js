@@ -23,7 +23,6 @@ class App extends React.Component {
 
   handleLogin = e => {
     e.preventDefault()
-    debugger
     console.log(this.state.newUser.fields)
     fetch('http://localhost:3000/auth/login', {
       method: 'POST',
@@ -37,14 +36,16 @@ class App extends React.Component {
     .then(data => {
       this.setState({currentUser: data})
     })
-    .then(this.props.history.push(`/`))
+    .then(this.props.history.push(`/users/`))
   }
+
+
 
   render() {
     console.log(this.state.currentUser)
     return (
       <div className="App">
-        <MainContainer handleLogin={this.handleLogin} handleChange={this.handleChange} newUser={this.state.newUser}/>
+        <MainContainer handleLogin={this.handleLogin} currentUser={this.state.currentUser} handleChange={this.handleChange} newUser={this.state.newUser}/>
       </div>
     );
   }

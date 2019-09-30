@@ -2,6 +2,9 @@ import React from 'react';
 import './App.css';
 import { withRouter } from 'react-router-dom';
 import MainContainer from './containers/MainContainer.js';
+import {useSelector, useDispatch} from 'react-redux';
+import {login} from './actions';
+import { connect } from 'react-redux';
 
 class App extends React.Component {
   state = {
@@ -34,8 +37,11 @@ class App extends React.Component {
     })
     .then(r => r.json())
     .then(data => {
-      this.setState({currentUser: data})
+      this.props.dispatch(login(data))
     })
+    // .then(data => {
+    //   this.setState({currentUser: data})
+    // })
     .then(this.props.history.push(`/users/`))
   }
 
@@ -51,4 +57,7 @@ class App extends React.Component {
   }
 }
 
-export default withRouter(App);
+
+
+
+export default connect()(withRouter(App));

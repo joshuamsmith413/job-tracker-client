@@ -24,7 +24,7 @@ class MainContainer extends React.Component {
       <div id="MainContainer">
         <Route exact path="/" component={Home} />
         <Route exact path="/auth" render={ () => <AuthContainer handleChange={this.props.handleChange} handleLogin={this.props.handleLogin} newUser={this.props.newUser}/>} />
-        <Route path="/users/" render={ () => <UserShow currentUser={this.props.currentUser}/>} />
+        <Route path="/users/" render={ () => <UserShow/>} />
       </div>
     )
   };

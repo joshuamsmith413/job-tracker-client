@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 class SignUp extends React.Component {
 
@@ -37,7 +38,7 @@ class SignUp extends React.Component {
     return (
       <div id="signup" >
         <h3>Sign Up</h3>
-        <form id="signup-form" onSubmit={this.props.handleSignUp}>
+        <form id="signup-form" onSubmit={this.handleSignUp}>
           <label> Username: </label>
           <input type="text" name="name" value={this.state.fields.name} onChange={this.handleChange}></input>
           <label> Password: </label>
@@ -49,4 +50,4 @@ class SignUp extends React.Component {
   }
 }
 
-export default SignUp;
+export default withRouter(SignUp);

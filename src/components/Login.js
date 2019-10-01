@@ -16,7 +16,7 @@ class Login extends React.Component {
   handleChange = e => {
     console.log(this.state.fields)
     const userInfo = { ...this.state.fields, [e.target.name]: e.target.value };
-    this.setState({ newUser: {fields: userInfo} });
+    this.setState( {fields: userInfo} );
   }
 
   handleLogin = e => {

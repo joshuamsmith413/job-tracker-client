@@ -4,3 +4,17 @@ export const login = (user) => {
     payload: user
   }
 }
+
+export const getApps = (app) => {
+  return {
+    type: 'GET_APPS',
+    payload: app
+  }
+}
+
+export const addApp = (app) => {
+  return {
+    type: "ADD_APP",
+    payload: app
+  }
+}

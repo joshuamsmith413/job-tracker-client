@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import JobAppForm from './JobAppForm.js'
 
 
 
@@ -11,6 +12,7 @@ class UserShow extends React.Component {
     return(
       <div id='UserShow'>
         {`hello from ${this.props.currentUser.name}`}
+        <JobAppForm />
       </div>
     )
   }
@@ -18,7 +20,7 @@ class UserShow extends React.Component {
 
 function mapStateToProps(state){
     return {
-        currentUser: state.currentUser,
+        currentUser: state.currentUser
     }
 }
 

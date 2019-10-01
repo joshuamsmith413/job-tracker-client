@@ -3,6 +3,8 @@ import AuthContainer from './AuthContainer.js';
 import Home from '../components/Home.js';
 import UserShow from '../components/UserShow.js';
 import { Route, withRouter } from 'react-router-dom';
+import { getApps } from '../actions';
+import { connect } from 'react-redux';
 
 class MainContainer extends React.Component {
 
@@ -16,10 +18,15 @@ class MainContainer extends React.Component {
     .then(payload => { this.setState({
       users: payload
     })})
+    fetch('http://localhost:3000/job_applications')
+    .then(res => res.json())
+    .then(data => {
+      this.props.dispatch(getApps(data))
+    })
   }
 
   render() {
-    console.log(this.state)
+    console.log(this.props)
     return (
       <div id="MainContainer">
         <Route exact path="/" component={Home} />
@@ -30,4 +37,4 @@ class MainContainer extends React.Component {
   };
 };
 
-export default withRouter(MainContainer);
+export default connect()(withRouter(MainContainer));

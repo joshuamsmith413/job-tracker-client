@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import MainContainer from './containers/MainContainer.js';
 import { connect } from 'react-redux';
 
-class App extends React.Component {
+export class App extends React.Component {
 
 
 

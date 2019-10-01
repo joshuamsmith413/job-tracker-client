@@ -6,40 +6,34 @@ import { withRouter } from 'react-router-dom';
 class Login extends React.Component {
 
   state = {
-    currentUser: {},
-      newUser: {
-        fields: {
-          name: "",
-          password: ""
-        },
-        error: ""
-      }
+    fields: {
+      name: "",
+      password: ""
+    },
+    error: ""
   }
 
   handleChange = e => {
-    console.log(this.state.newUser.fields)
-    const userInfo = { ...this.state.newUser.fields, [e.target.name]: e.target.value };
+    console.log(this.state.fields)
+    const userInfo = { ...this.state.fields, [e.target.name]: e.target.value };
     this.setState({ newUser: {fields: userInfo} });
   }
 
   handleLogin = e => {
     e.preventDefault()
-    console.log(this.state.newUser.fields)
+    console.log(this.state.fields)
     fetch('http://localhost:3000/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json'
       },
-      body: JSON.stringify(this.state.newUser.fields)
+      body: JSON.stringify(this.state.fields)
     })
     .then(r => r.json())
     .then(data => {
       this.props.dispatch(login(data))
     })
-    // .then(data => {
-    //   this.setState({currentUser: data})
-    // })
     .then(this.props.history.push(`/users/`))
   }
 
@@ -50,9 +44,9 @@ class Login extends React.Component {
         <form onSubmit={this.handleLogin}>
           <h3>Login</h3>
           <label> Username: </label>
-          <input type="text" name="name" value={this.state.newUser.fields.name} onChange={this.handleChange}></input>
+          <input type="text" name="name" value={this.state.fields.name} onChange={this.handleChange}></input>
           <label> Password: </label>
-          <input type="password" name="password" value={this.state.newUser.fields.password} onChange={this.handleChange}></input>
+          <input type="password" name="password" value={this.state.fields.password} onChange={this.handleChange}></input>
           <input type="submit"></input>
         </form>
       </div>

@@ -39,6 +39,7 @@ class Login extends React.Component {
 
 
   render() {
+    console.log(this.props)
     return(
       <div id="Login">
         <form onSubmit={this.handleLogin}>
@@ -54,4 +55,10 @@ class Login extends React.Component {
   }
 }
 
-export default connect()(withRouter(Login));
+function mapStateToProps(state){
+    return {
+        currentUser: state.currentUser
+    }
+}
+
+export default connect(mapStateToProps)(withRouter(Login));

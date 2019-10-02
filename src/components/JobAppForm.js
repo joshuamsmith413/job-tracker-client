@@ -36,12 +36,13 @@ class JobAppForm extends React.Component {
     .then(document.getElementById("formapp").reset())
   }
 
-  displayApps = apps => {
-    return apps.map(app => {
-      if (this.props.currentUser && this.props.currentUser.id === app.user_id)
-      return <div>{app.company}</div>
-    })
-  }
+  // displayApps = apps => {
+  //   return apps.map(app => {
+  //     if (this.props.currentUser && this.props.currentUser.id === app.user_id)
+  //     return <div>{app.company}</div>
+  //   })
+  // }
+  // {this.displayApps(this.props.jobApps)}
 
   render() {
 
@@ -56,7 +57,6 @@ class JobAppForm extends React.Component {
             <input type='text' name='cover' value={this.state.cover} onChange={this.handleChange}/>
           <input type="submit"/>
         </form>
-        {this.displayApps(this.props.jobApps)}
       </div>
     )
   }

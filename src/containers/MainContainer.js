@@ -12,18 +12,14 @@ class MainContainer extends React.Component {
     users: []
   }
 
-  componentDidMount() {
-    fetch('http://localhost:3000/users')
-    .then(res => res.json())
-    .then(payload => { this.setState({
-      users: payload
-    })})
-    fetch('http://localhost:3000/job_applications')
-    .then(res => res.json())
-    .then(data => {
-      this.props.dispatch(getApps(data))
-    })
-  }
+  // componentDidMount() {
+  //
+  //   fetch('http://localhost:3000/job_applications')
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     this.props.dispatch(getApps(data))
+  //   })
+  // }
 
   render() {
     console.log(this.props)

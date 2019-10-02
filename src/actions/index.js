@@ -5,6 +5,12 @@ export const login = (user) => {
   }
 }
 
+export const logout = () => {
+  return {
+    type: 'LOG_OUT'
+  }
+}
+
 export const getApps = (app) => {
   return {
     type: 'GET_APPS',
@@ -16,5 +22,11 @@ export const addApp = (app) => {
   return {
     type: "ADD_APP",
     payload: app
+  }
+}
+
+export const dropApps = () => {
+  return {
+    type: 'DROP_APPS'
   }
 }

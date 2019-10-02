@@ -2,14 +2,15 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import JobAppForm from './JobAppForm.js';
-import { getApps } from '../actions';
+import { getApps, logout, dropApps } from '../actions';
+
 
 
 
 class UserShow extends React.Component {
 
   getUserApps = () => {
-    if (this.props.currentUser && this.props.jobApps.length < 1) {
+    if (this.props.currentUser) {
       fetch('http://localhost:3000/job_applications/get_apps', {
           method: 'POST',
           headers: {
@@ -35,12 +36,20 @@ class UserShow extends React.Component {
     }
   }
 
+  handleLogout = () => {
+    localStorage.removeItem("token")
+    this.props.dispatch(logout())
+    this.props.dispatch(dropApps())
+    this.props.history.push(`/`)
+  }
+
 
   render() {
-    console.log("job apps", this.props.jobApps[0])
+    console.log("props", this.props)
     return(
       <div id='UserShow'>
         {`hello from ${this.props.currentUser.name}`}
+        <button onClick={this.handleLogout}>Logout</button>
         <JobAppForm />
         <button onClick={this.getUserApps}>See your Apps</button>
         {this.renderApps()}

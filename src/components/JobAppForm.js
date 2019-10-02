@@ -7,7 +7,11 @@ class JobAppForm extends React.Component {
 
   state = {
     company: '',
-    cover: ''
+    cover: '',
+    contact: '',
+    position: '',
+    source: '',
+    resume: ''
   }
 
   handleChange = e => {
@@ -19,6 +23,7 @@ class JobAppForm extends React.Component {
 
   handleNewApp = e => {
     e.preventDefault()
+    document.getElementById("formapp").reset()
     const params = {...this.state, user_id: this.props.currentUser.id}
     console.log(params)
     fetch('http://localhost:3000/job_applications', {
@@ -33,7 +38,7 @@ class JobAppForm extends React.Component {
     .then(data => {
       this.props.dispatch(addApp(data))
     })
-    .then(document.getElementById("formapp").reset())
+    .then(this.setState())
   }
 
   // displayApps = apps => {
@@ -53,8 +58,16 @@ class JobAppForm extends React.Component {
         <form id="formapp" onSubmit={this.handleNewApp}>
           <label>Company Name:</label>
             <input type='text' name='company' value={this.state.company} onChange={this.handleChange}/>
+          <label>Contact:</label>
+            <input type='text' name='contact' value={this.state.contact} onChange={this.handleChange} />
+          <label>Position:</label>
+            <input type='text' name='position' value={this.state.position} onChange={this.handleChange} />
+          <label>Found on:</label>
+            <input type='text' name='source' value={this.state.source} onChange={this.handleChange}/>
+          <label>Resume:</label>
+            <input type='text' name='resume' value={this.state.resume} onChange={this.handleChange} />
           <label>Cover Letter:</label>
-            <input type='text' name='cover' value={this.state.cover} onChange={this.handleChange}/>
+            <textarea name='cover' value={this.state.cover} onChange={this.handleChange}/>
           <input type="submit"/>
         </form>
       </div>

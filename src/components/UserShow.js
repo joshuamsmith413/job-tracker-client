@@ -30,7 +30,14 @@ class UserShow extends React.Component {
     if (this.props.jobApps) {
       return this.props.jobApps.map(app => {
         return <div>
-          {app.created_at.substring(0, 10)} {app.company}: {app.cover_letter}
+          <h3>{app.company}</h3>
+          position: {app.position}<br/>
+        Date Applied: {app.created_at.substring(0, 10)}<br/>
+        contact: {app.contact}<br/>
+      cover letter: {app.cover_letter}<br/>
+           Resume: {app.resume}
+           {this.renderWeekCheckup(app)}
+           found on: {app.source}
         </div>
       })
     }
@@ -41,6 +48,10 @@ class UserShow extends React.Component {
     this.props.dispatch(logout())
     this.props.dispatch(dropApps())
     this.props.history.push(`/`)
+  }
+
+  renderWeekCheckup = (app) => {
+    return !app.one_week_checkup ? <p>Don't forget to check in in one week!</p> : null
   }
 
 

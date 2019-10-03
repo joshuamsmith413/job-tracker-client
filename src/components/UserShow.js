@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import JobAppForm from './JobAppForm.js';
 import { getApps, logout, dropApps } from '../actions';
+import JobAppDisplay from './JobAppDisplay';
 
 
 
@@ -26,19 +27,10 @@ class UserShow extends React.Component {
     }
   }
 
-  renderApps = () => {
+  passAppProps = () => {
     if (this.props.jobApps) {
       return this.props.jobApps.map(app => {
-        return <div>
-          <h3>{app.company}</h3>
-          position: {app.position}<br/>
-        Date Applied: {app.created_at.substring(0, 10)}<br/>
-        contact: {app.contact}<br/>
-      cover letter: {app.cover_letter}<br/>
-           Resume: {app.resume}
-           {this.renderWeekCheckup(app)}
-           found on: {app.source}
-        </div>
+        return  <JobAppDisplay app={app}/>
       })
     }
   }
@@ -50,20 +42,23 @@ class UserShow extends React.Component {
     this.props.history.push(`/`)
   }
 
-  renderWeekCheckup = (app) => {
-    return !app.one_week_checkup ? <p>Don't forget to check in in one week!</p> : null
-  }
-
-
   render() {
-    console.log("props", this.props)
     return(
       <div id='UserShow'>
         {`hello from ${this.props.currentUser.name}`}
         <button onClick={this.handleLogout}>Logout</button>
         <JobAppForm />
         <button onClick={this.getUserApps}>See your Apps</button>
-        {this.renderApps()}
+        <div id='JobAppDisplay'>
+          <div className='company'><u><strong>Company</strong></u></div>
+          <div className='position'><u><strong>Position</strong></u></div>
+          <div className='contact'><u><strong>Contact</strong></u></div>
+          <div className='coverLetter'><u><strong>Cover Letter</strong></u></div>
+          <div className='resume'><u><strong>Resume</strong></u></div>
+          <div className='weekCheckup'><u><strong>Week one Checkin</strong></u></div>
+          <div className='foundOn'><u><strong>Found On</strong></u></div>
+          {this.passAppProps()}
+        </div>
       </div>
     )
   }

@@ -22,7 +22,7 @@ class MainContainer extends React.Component {
   // }
 
   render() {
-    console.log(this.props)
+
     return (
       <div id="MainContainer">
         <Route exact path="/" component={Home} />

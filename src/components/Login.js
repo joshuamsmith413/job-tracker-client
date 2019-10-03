@@ -14,14 +14,14 @@ class Login extends React.Component {
   }
 
   handleChange = e => {
-    console.log(this.state.fields)
+
     const userInfo = { ...this.state.fields, [e.target.name]: e.target.value };
     this.setState( {fields: userInfo} );
   }
 
   handleLogin = e => {
     e.preventDefault()
-    console.log(this.state.fields)
+
     fetch('http://localhost:3000/auth/login', {
       method: 'POST',
       headers: {
@@ -39,7 +39,7 @@ class Login extends React.Component {
 
 
   render() {
-    console.log(this.props)
+
     return(
       <div id="Login">
         <form onSubmit={this.handleLogin}>

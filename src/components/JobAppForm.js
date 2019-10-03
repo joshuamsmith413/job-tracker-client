@@ -15,7 +15,7 @@ class JobAppForm extends React.Component {
   }
 
   handleChange = e => {
-      console.log(this.state)
+
     this.setState({
       [e.target.name]: e.target.value
     })
@@ -50,8 +50,6 @@ class JobAppForm extends React.Component {
   // {this.displayApps(this.props.jobApps)}
 
   render() {
-
-    console.log(this.props)
     return(
       <div id='JobAppForm'>
         <h3>Add an App</h3>

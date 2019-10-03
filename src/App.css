@@ -1,22 +1,37 @@
-.App {
-  text-align: center;
+#UserShow {
+  padding: 1%;
 }
 
-.App-logo {
-  height: 40vmin;
+#JobAppDisplay {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-column-gap: 3em;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.company {
+  grid-column: 3;
 }
 
-.App-link {
-  color: #09d3ac;
+.position {
+  grid-column: 4;
+}
+
+.contact {
+  grid-column: 5;
+}
+
+.coverLetter {
+  grid-column: 6;
+}
+
+.resume {
+  grid-column: 7;
+}
+
+.weekCheckup {
+  grid-column: 8;
+}
+
+.foundOn {
+  grid-column: 9;
 }

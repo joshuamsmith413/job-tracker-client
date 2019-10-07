@@ -39,10 +39,12 @@ class UserShow extends React.Component {
     localStorage.removeItem("token")
     this.props.dispatch(logout())
     this.props.dispatch(dropApps())
+    localStorage.removeItem("token")
     this.props.history.push(`/`)
   }
 
   render() {
+    console.log("user show", localStorage)
     return(
       <div id='UserShow'>
         {`hello from ${this.props.currentUser.name}`}

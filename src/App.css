@@ -2,6 +2,12 @@
   padding: 1%;
 }
 
+#error {
+  padding-left: 15%;
+  color: red;
+  font-size: 12px;
+}
+
 #JobAppDisplay {
   display: grid;
   grid-template-columns: repeat(12, 1fr);

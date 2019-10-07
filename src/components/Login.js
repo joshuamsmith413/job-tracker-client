@@ -3,6 +3,11 @@ import { connect } from 'react-redux';
 import { login } from '../actions';
 import { withRouter } from 'react-router-dom';
 
+const initialfields = {
+  name: '',
+  password: ''
+}
+
 class Login extends React.Component {
 
   state = {
@@ -14,14 +19,14 @@ class Login extends React.Component {
   }
 
   handleChange = e => {
-
+    console.log(this.state.fields)
     const userInfo = { ...this.state.fields, [e.target.name]: e.target.value };
     this.setState( {fields: userInfo} );
   }
 
   handleLogin = e => {
     e.preventDefault()
-
+    console.log(this.state.fields)
     fetch('http://localhost:3000/auth/login', {
       method: 'POST',
       headers: {
@@ -32,14 +37,28 @@ class Login extends React.Component {
     })
     .then(r => r.json())
     .then(data => {
-      this.props.dispatch(login(data))
+      if (data.error) {
+        this.setState(
+          { error: data.error }
+        )
+      } else if (data.id) {
+        this.props.dispatch(login(data))
+        localStorage.setItem('token', data.token)
+        this.props.history.push(`/users/`)
+      }
     })
-    .then(this.props.history.push(`/users/`))
+    .then(this.setState(
+      { fields: initialfields }
+    ))
   }
 
 
-  render() {
+  renderError = () => {
+    return this.state.error ? <div id='error'>{this.state.error}</div> : null
+  }
 
+  render() {
+    console.log(localStorage)
     return(
       <div id="Login">
         <form onSubmit={this.handleLogin}>
@@ -49,6 +68,7 @@ class Login extends React.Component {
           <label> Password: </label>
           <input type="password" name="password" value={this.state.fields.password} onChange={this.handleChange}></input>
           <input type="submit"></input>
+          {this.renderError()}
         </form>
       </div>
     )

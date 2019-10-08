@@ -1,9 +1,10 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import JobAppForm from './JobAppForm.js';
 import { getApps, logout, dropApps } from '../actions';
 import JobAppDisplay from './JobAppDisplay';
+import API from '../API.js';
 
 
 
@@ -11,21 +12,15 @@ import JobAppDisplay from './JobAppDisplay';
 class UserShow extends React.Component {
 
   getUserApps = () => {
-    if (this.props.currentUser) {
-      fetch('http://localhost:3000/job_applications/get_apps', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json'
-          },
-          body: JSON.stringify(this.props.currentUser)
-      })
+    if (this.props.jobApps.length === 0) {
+      API.getUserApps(this.props.currentUser)
       .then(r => r.json())
       .then(data => {
         this.props.dispatch(getApps(data))
       })
     }
   }
+
 
   passAppProps = () => {
     if (this.props.jobApps) {
@@ -44,13 +39,14 @@ class UserShow extends React.Component {
   }
 
   render() {
-    console.log("user show", localStorage)
+    console.log(this.props.history.location)
     return(
       <div id='UserShow'>
         {`hello from ${this.props.currentUser.name}`}
         <button onClick={this.handleLogout}>Logout</button>
+        <Link to='/'>Home</Link>
         <JobAppForm />
-        <button onClick={this.getUserApps}>See your Apps</button>
+        {this.getUserApps()}
         <div id='JobAppDisplay'>
           <div className='company'><u><strong>Company</strong></u></div>
           <div className='position'><u><strong>Position</strong></u></div>

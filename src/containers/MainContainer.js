@@ -3,23 +3,9 @@ import AuthContainer from './AuthContainer.js';
 import Home from '../components/Home.js';
 import UserShow from '../components/UserShow.js';
 import { Route, withRouter } from 'react-router-dom';
-import { getApps } from '../actions';
 import { connect } from 'react-redux';
 
 class MainContainer extends React.Component {
-
-  state = {
-    users: []
-  }
-
-  // componentDidMount() {
-  //
-  //   fetch('http://localhost:3000/job_applications')
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     this.props.dispatch(getApps(data))
-  //   })
-  // }
 
   render() {
 

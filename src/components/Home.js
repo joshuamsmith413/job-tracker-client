@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 
 class Home extends React.Component {
@@ -8,7 +8,6 @@ class Home extends React.Component {
     return(
       <div>
         Home <br/>
-        <Link to="/auth">Sign Up or Login </Link>
       </div>
     )
   }

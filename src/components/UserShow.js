@@ -1,8 +1,8 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import JobAppForm from './JobAppForm.js';
-import { getApps, logout, dropApps } from '../actions';
+import { getApps } from '../actions';
 import JobAppDisplay from './JobAppDisplay';
 import API from '../API.js';
 
@@ -30,21 +30,10 @@ class UserShow extends React.Component {
     }
   }
 
-  handleLogout = () => {
-    localStorage.removeItem("token")
-    this.props.dispatch(logout())
-    this.props.dispatch(dropApps())
-    localStorage.removeItem("token")
-    this.props.history.push(`/`)
-  }
-
   render() {
-    console.log(this.props.history.location)
+
     return(
       <div id='UserShow'>
-        {`hello from ${this.props.currentUser.name}`}
-        <button onClick={this.handleLogout}>Logout</button>
-        <Link to='/'>Home</Link>
         <JobAppForm />
         {this.getUserApps()}
         <div id='JobAppDisplay'>

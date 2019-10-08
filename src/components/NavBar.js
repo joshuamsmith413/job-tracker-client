@@ -28,7 +28,7 @@ class Navbar extends React.Component {
     if (user.name) {
       return(
         <span>
-          {this.props.currentUser.name}
+          Hi {this.props.currentUser.name}
           <button onClick={this.handleLogout}>Logout</button>
           {this.myJobRenderConditions(this.props.history.location.pathname)}
         </span>

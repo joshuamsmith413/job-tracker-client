@@ -10,7 +10,7 @@ class JobAppDisplay extends React.Component {
     setModalShow: false
   }
   renderWeekCheckup = (app) => {
-    return !app.one_week_checkup ? <p>Don't forget to check in in one week!</p> : null
+    return app.one_week_checkup ? <p>Don't forget to check in in one week!</p> : <p>Noice</p>
   }
 
 

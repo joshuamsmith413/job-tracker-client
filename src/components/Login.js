@@ -37,7 +37,7 @@ class Login extends React.Component {
       } else if (data.id) {
         this.props.dispatch(login(data))
         localStorage.setItem('token', data.token)
-        this.props.history.push(`/users/`)
+        this.props.history.push(`/profile`)
       }
     })
     .then(this.setState(

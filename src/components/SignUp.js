@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import API from '../API.js';
 
 class SignUp extends React.Component {
 
@@ -13,14 +14,7 @@ class SignUp extends React.Component {
 
   handleSignUp = e => {
     e.preventDefault()
-    fetch('http://localhost:3000/users', {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json'
-      },
-      body: JSON.stringify(this.state.fields)
-    })
+    API.createUser(this.state.fields)
     .then(r => r.json())
     .then(data => {
        data.error ? alert(`${data.error}`) : alert(`Welcome ${this.state.fields.name}`)

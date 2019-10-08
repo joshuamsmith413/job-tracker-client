@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { login } from '../actions';
 import { withRouter } from 'react-router-dom';
+import API from '../API.js';
 
 const initialfields = {
   name: '',
@@ -26,14 +27,7 @@ class Login extends React.Component {
 
   handleLogin = e => {
     e.preventDefault()
-    fetch('http://localhost:3000/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json'
-      },
-      body: JSON.stringify(this.state.fields)
-    })
+    API.login(this.state.fields)
     .then(r => r.json())
     .then(data => {
       if (data.error) {

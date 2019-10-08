@@ -3,7 +3,6 @@ import AuthContainer from './AuthContainer.js';
 import Home from '../components/Home.js';
 import UserShow from '../components/UserShow.js';
 import { Route, withRouter } from 'react-router-dom';
-import { getApps } from '../actions';
 import { connect } from 'react-redux';
 
 class MainContainer extends React.Component {

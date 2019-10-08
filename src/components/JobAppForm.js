@@ -2,6 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { addApp } from '../actions';
+import API from '../API.js';
+
+const initialState = {
+  company: '',
+  cover: '',
+  contact: '',
+  position: '',
+  source: '',
+  resume: ''
+}
 
 class JobAppForm extends React.Component {
 
@@ -15,7 +25,6 @@ class JobAppForm extends React.Component {
   }
 
   handleChange = e => {
-
     this.setState({
       [e.target.name]: e.target.value
     })
@@ -23,22 +32,13 @@ class JobAppForm extends React.Component {
 
   handleNewApp = e => {
     e.preventDefault()
-    document.getElementById("formapp").reset()
     const params = {...this.state, user_id: this.props.currentUser.id}
-    console.log(params)
-    fetch('http://localhost:3000/job_applications', {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json'
-      },
-      body: JSON.stringify(params)
-    })
+    API.createJobApp(params)
     .then(r => r.json())
     .then(data => {
       this.props.dispatch(addApp(data))
     })
-    .then(this.setState())
+    .then(this.setState({ initialState }))
   }
 
   render() {

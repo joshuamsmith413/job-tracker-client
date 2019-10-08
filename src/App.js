@@ -24,7 +24,7 @@ export class App extends React.Component {
   }
 
   render() {
-    console.log(token)
+
     return (
       <div className="App">
         <MainContainer />

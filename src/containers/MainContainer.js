@@ -8,19 +8,6 @@ import { connect } from 'react-redux';
 
 class MainContainer extends React.Component {
 
-  state = {
-    users: []
-  }
-
-  // componentDidMount() {
-  //
-  //   fetch('http://localhost:3000/job_applications')
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     this.props.dispatch(getApps(data))
-  //   })
-  // }
-
   render() {
 
     return (

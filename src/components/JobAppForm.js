@@ -41,14 +41,6 @@ class JobAppForm extends React.Component {
     .then(this.setState())
   }
 
-  // displayApps = apps => {
-  //   return apps.map(app => {
-  //     if (this.props.currentUser && this.props.currentUser.id === app.user_id)
-  //     return <div>{app.company}</div>
-  //   })
-  // }
-  // {this.displayApps(this.props.jobApps)}
-
   render() {
     return(
       <div id='JobAppForm'>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import JobAppForm from './JobAppForm.js';
 import { getApps, logout, dropApps } from '../actions';
@@ -44,11 +44,11 @@ class UserShow extends React.Component {
   }
 
   render() {
-    console.log("user show", localStorage)
     return(
       <div id='UserShow'>
         {`hello from ${this.props.currentUser.name}`}
         <button onClick={this.handleLogout}>Logout</button>
+        <Link to='/'>Home</Link>
         <JobAppForm />
         <button onClick={this.getUserApps}>See your Apps</button>
         <div id='JobAppDisplay'>

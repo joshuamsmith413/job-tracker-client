@@ -1,11 +1,22 @@
 import React from 'react';
+import CoverLetterModal from './CoverLetterModal';
+import { Button } from 'react-bootstrap';
+
+
 
 class JobAppDisplay extends React.Component {
+  state = {
+    modalShow: false,
+    setModalShow: false
+  }
   renderWeekCheckup = (app) => {
     return !app.one_week_checkup ? <p>Don't forget to check in in one week!</p> : null
   }
 
+
+
   render() {
+
     return(
       <React.Fragment>
         <div className='company'>
@@ -19,7 +30,14 @@ class JobAppDisplay extends React.Component {
           {this.props.app.contact}
         </div>
         <div className='coverLetter'>
-          link to cover letter modal
+          <Button variant='link' onClick={() => this.setState({modalShow: true})}>
+            Cover Letter
+          </Button>
+          <CoverLetterModal
+            show={this.state.modalShow}
+            app={this.props.app}
+            onHide={() => this.setState({modalShow: false})}
+          />
         </div>
         <div className='resume'>
           link to Resume modal or something

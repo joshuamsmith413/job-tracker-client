@@ -1,16 +1,14 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
+const Home = () => {
 
-class Home extends React.Component {
+  return(
+    <div>
+      Home <br/>
+    </div>
+  )
 
-  render() {
-    return(
-      <div>
-        Home <br/>
-      </div>
-    )
-  }
 }
 
 export default withRouter(Home);

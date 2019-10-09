@@ -3,49 +3,49 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { logout, dropApps } from '../actions';
 
-class Navbar extends React.Component {
+const Navbar = props => {
 
-  handleLogout = () => {
+  const handleLogout = () => {
     localStorage.removeItem("token")
-    this.props.dispatch(logout())
-    this.props.dispatch(dropApps())
-    this.props.history.push(`/`)
+    props.dispatch(logout())
+    props.dispatch(dropApps())
+    props.history.push(`/`)
   }
 
-  authRenderConditions = (pathname) => {
+  const authRenderConditions = (pathname) => {
     return pathname !== '/auth' ? <Link to="/auth">Sign Up or Login </Link> : null
   }
 
-  myJobRenderConditions = pathname => {
+  const myJobRenderConditions = pathname => {
     return pathname !== '/profile' ? <Link to='/profile'>My Jobs</Link> : null
   }
 
-  homePageRenderConditions = pathname => {
+  const homePageRenderConditions = pathname => {
     return pathname !== '/' ? <Link to='/'>Home</Link> : null
   }
 
-  loggedinRenderConditions = (user) => {
+  const loggedinRenderConditions = (user) => {
     if (user.name) {
       return(
         <span>
-          Hi {this.props.currentUser.name}
-          <button onClick={this.handleLogout}>Logout</button>
-          {this.myJobRenderConditions(this.props.history.location.pathname)}
+          Hi {props.currentUser.name}
+          <button onClick={handleLogout}>Logout</button>
+          {myJobRenderConditions(props.history.location.pathname)}
         </span>
       )
     } else {
-      return this.authRenderConditions(this.props.history.location.pathname)
+      return authRenderConditions(props.history.location.pathname)
     }
   }
 
-  render() {
-    return(
-      <div id='Navbar'>
-        {this.loggedinRenderConditions(this.props.currentUser)}
-        {this.homePageRenderConditions(this.props.history.location.pathname)}
-      </div>
-    )
-  }
+
+  return(
+    <div id='Navbar'>
+      {loggedinRenderConditions(props.currentUser)}
+      {homePageRenderConditions(props.history.location.pathname)}
+    </div>
+  )
+
 }
 
 function mapStateToProps(state){

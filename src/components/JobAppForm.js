@@ -1,68 +1,85 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { addApp } from '../actions';
 import API from '../API.js';
 
-const initialState = {
-  company: '',
-  cover: '',
-  contact: '',
-  position: '',
-  source: '',
-  resume: ''
-}
+const JobAppForm = props => {
 
-class JobAppForm extends React.Component {
+  const [company, setCompany] = useState('');
+  const [cover, setCover] = useState('');
+  const [contact, setContact] = useState('');
+  const [position, setPosition] = useState('');
+  const [source, setSource] = useState('');
+  const [resume, setResume] = useState('');
 
-  state = {
-    company: '',
-    cover: '',
-    contact: '',
-    position: '',
-    source: '',
-    resume: ''
+  const resetform = () => {
+    setCompany('');
+    setCover('');
+    setCover('');
+    setPosition('');
+    setSource('');
+    setResume('');
   }
 
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    })
+  const handleCompanyInput = e => {
+    setCompany(e.target.value)
   }
 
-  handleNewApp = e => {
+  const handleCoverInput = e => {
+    setCover(e.target.value)
+  }
+
+  const handleContactInput = e => {
+    setContact(e.target.value)
+  }
+
+  const handlePositionInput = e => {
+    setPosition(e.target.value)
+  }
+
+  const handleSourceInput = e => {
+    setSource(e.target.value)
+  }
+
+  const handleResumeInput = e => {
+    setResume(e.target.value)
+  }
+
+  const handleNewApp = e => {
     e.preventDefault()
-    const params = {...this.state, user_id: this.props.currentUser.id}
+    const userId = props.currentUser.id
+    const params = {userId, company, cover, contact, position, source, resume}
+    debugger
     API.createJobApp(params)
     .then(r => r.json())
     .then(data => {
-      this.props.dispatch(addApp(data))
+      props.dispatch(addApp(data))
     })
-    .then(this.setState({ initialState }))
+    .then(resetform())
   }
 
-  render() {
-    return(
-      <div id='JobAppForm'>
-        <h3>Add an App</h3>
-        <form id="formapp" onSubmit={this.handleNewApp}>
-          <label>Company Name:</label>
-            <input type='text' name='company' value={this.state.company} onChange={this.handleChange}/>
-          <label>Contact:</label>
-            <input type='text' name='contact' value={this.state.contact} onChange={this.handleChange} />
-          <label>Position:</label>
-            <input type='text' name='position' value={this.state.position} onChange={this.handleChange} />
-          <label>Found on:</label>
-            <input type='text' name='source' value={this.state.source} onChange={this.handleChange}/>
-          <label>Resume:</label>
-            <input type='text' name='resume' value={this.state.resume} onChange={this.handleChange} />
-          <label>Cover Letter:</label>
-            <textarea name='cover' value={this.state.cover} onChange={this.handleChange}/>
-          <input type="submit"/>
-        </form>
-      </div>
-    )
-  }
+  return(
+    <div id='JobAppForm'>
+      <h3>Add an App</h3>
+      <form id="formapp" onSubmit={handleNewApp}>
+        <label>Company Name:</label>
+          <input type='text' name='company' value={company} onChange={handleCompanyInput}/>
+        <label>Contact:</label>
+          <input type='text' name='contact' value={contact} onChange={handleContactInput} />
+        <label>Position:</label>
+          <input type='text' name='position' value={position} onChange={handlePositionInput} />
+        <label>Found on:</label>
+          <input type='text' name='source' value={source} onChange={handleSourceInput}/>
+        <label>Resume:</label>
+          <input type='text' name='resume' value={resume} onChange={handleResumeInput} />
+        <label>Cover Letter:</label>
+          <textarea name='cover' value={cover} onChange={handleCoverInput}/>
+        <input type="submit"/>
+      </form>
+    </div>
+  )
+
 }
 
 function mapStateToProps(state){

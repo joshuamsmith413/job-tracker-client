@@ -1,47 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
+import { login } from '../actions';
+import { connect } from 'react-redux';
 import API from '../API.js';
 
-class SignUp extends React.Component {
+const SignUp = props => {
 
-  state = {
-    fields: {
-      name: "",
-      password: ""
-    },
-    error: ""
-  }
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  handleSignUp = e => {
+  const handleSignUp = e => {
     e.preventDefault()
-    API.createUser(this.state.fields)
+    const newUser = {name, password}
+    API.createUser(newUser)
     .then(r => r.json())
     .then(data => {
-       data.error ? alert(`${data.error}`) : alert(`Welcome ${this.state.fields.name}`)
+       if(!data.error) {
+         API.login(newUser)
+         .then(r => r.json())
+         .then(data => {
+           if (data.error) {
+             setError(data.error)
+           } else if (data.id) {
+             props.dispatch(login(data))
+             localStorage.setItem('token', data.token)
+             props.history.push(`/profile`)
+           }
+         })
+       } else {
+         alert(`${data.error}`);
+         setName('');
+         setPassword('');
+       }
      })
-     .then(this.props.history.push("/"))
   }
 
-  handleChange = e => {
-    const userInfo = { ...this.state.fields, [e.target.name]: e.target.value };
-    this.setState({ fields: userInfo });
+  const renderError = () => {
+    return error ? <div id='error'>{error}</div> : null
   }
 
-  render() {
-
-    return (
-      <div id="signup" >
-        <h3>Sign Up</h3>
-        <form id="signup-form" onSubmit={this.handleSignUp}>
-          <label> Username: </label>
-          <input type="text" name="name" value={this.state.fields.name} onChange={this.handleChange}></input>
-          <label> Password: </label>
-          <input type="password" name="password" value={this.state.fields.password} onChange={this.handleChange}></input>
-          <input type="submit"></input>
-        </form>
-      </div>
-    )
+  const handleNameInput = e => {
+    setName(e.target.value)
   }
+
+  const handlePasswordInput = e => {
+    setPassword(e.target.value)
+  }
+
+  return (
+    <div id="signup" >
+      <h3>Sign Up</h3>
+      <form id="signup-form" onSubmit={handleSignUp}>
+        <label> Username: </label>
+        <input type="text" name="name" value={name} onChange={handleNameInput}></input>
+        <label> Password: </label>
+        <input type="password" name="password" value={password} onChange={handlePasswordInput}></input>
+        <input type="submit"></input>
+        {renderError()}
+      </form>
+    </div>
+  )
+
 }
 
-export default withRouter(SignUp);
+export default connect()(withRouter(SignUp));

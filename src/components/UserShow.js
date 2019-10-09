@@ -2,29 +2,12 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import JobAppForm from './JobAppForm.js';
-import { getApps } from '../actions';
 import JobAppDisplay from './JobAppDisplay';
-import API from '../API.js';
-
-
-
-
 
 const UserShow = props => {
 
-  const getUserApps = () => {
-    if (props.jobApps.length === 0) {
-      API.getUserApps(props.currentUser)
-      .then(r => r.json())
-      .then(data => {
-        props.dispatch(getApps(data))
-      })
-    }
-  }
-
-
   const passAppProps = () => {
-    if (props.jobApps) {
+    if (props.jobApps.length > 0) {
       return props.jobApps.map(app => {
         return  <JobAppDisplay app={app}/>
       })
@@ -34,7 +17,6 @@ const UserShow = props => {
   return (
     <div id='UserShow'>
       <JobAppForm />
-      {getUserApps()}
       <div id='JobAppDisplay'>
         <div className='company'><u><strong>Company</strong></u></div>
         <div className='position'><u><strong>Position</strong></u></div>

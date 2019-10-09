@@ -1,39 +1,50 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { withRouter } from 'react-router-dom';
 import MainContainer from './containers/MainContainer.js';
 import { connect } from 'react-redux';
-import { login } from './actions';
+import { login, getApps } from './actions';
+import API from './API.js'
 
-const token = localStorage.token;
-export class App extends React.Component {
+const App = props => {
+  const token = localStorage.token;
 
 
-  componentDidMount() {
-    if (token) {
-      return fetch('http://localhost:3000/set_user', {
+  useEffect(() => {
+    if (token && !props.currentUser.id) {
+      fetch('http://localhost:3000/set_user', {
         headers: {
           Authorization: token
         }
       })
       .then(r => r.json())
       .then(data => {
-        this.props.dispatch(login(data))
+        props.dispatch(login(data))
       })
     }
-  }
+    if (props.currentUser && props.apps.length === 0 ) {
+      API.getUserApps(props.currentUser)
+      .then(r => r.json())
+      .then(data => {
+        props.dispatch(getApps(data))
+      })
+    }
+  })
 
-  render() {
+  return (
+    <div className="App">
+      <MainContainer />
+    </div>
+  );
 
-    return (
-      <div className="App">
-        <MainContainer />
-      </div>
-    );
-  }
+}
+
+function mapStateToProps(state){
+    return {
+        currentUser: state.currentUser,
+        apps: state.jobApps
+    }
 }
 
 
-
-
-export default connect()(withRouter(App));
+export default connect(mapStateToProps)(withRouter(App));

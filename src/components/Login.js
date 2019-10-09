@@ -1,71 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { login } from '../actions';
 import { withRouter } from 'react-router-dom';
 import API from '../API.js';
 
-const initialfields = {
-  name: '',
-  password: ''
-}
+const Login = props => {
 
-class Login extends React.Component {
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  state = {
-    fields: {
-      name: "",
-      password: ""
-    },
-    error: ""
+  const handleNameInput = e => {
+    setName(e.target.value)
   }
 
-  handleChange = e => {
-
-    const userInfo = { ...this.state.fields, [e.target.name]: e.target.value };
-    this.setState( {fields: userInfo} );
+  const handlePasswordInput = e => {
+    setPassword(e.target.value)
   }
 
-  handleLogin = e => {
+  const resetFields = () => {
+    setName('');
+    setPassword('');
+  }
+
+  const handleLogin = e => {
     e.preventDefault()
-    API.login(this.state.fields)
+    const params = {name, password}
+    API.login(params)
     .then(r => r.json())
     .then(data => {
       if (data.error) {
-        this.setState(
-          { error: data.error }
-        )
+        setError(data.error)
       } else if (data.id) {
-        this.props.dispatch(login(data))
+        props.dispatch(login(data))
         localStorage.setItem('token', data.token)
-        this.props.history.push(`/profile`)
+        props.history.push(`/profile`)
       }
     })
-    .then(this.setState(
-      { fields: initialfields }
-    ))
+    .then(resetFields())
   }
 
 
-  renderError = () => {
-    return this.state.error ? <div id='error'>{this.state.error}</div> : null
+  const renderError = () => {
+    return error ? <div id='error'>{error}</div> : null
   }
 
-  render() {
 
-    return(
-      <div id="Login">
-        <form onSubmit={this.handleLogin}>
-          <h3>Login</h3>
-          <label> Username: </label>
-          <input type="text" name="name" value={this.state.fields.name} onChange={this.handleChange}></input>
-          <label> Password: </label>
-          <input type="password" name="password" value={this.state.fields.password} onChange={this.handleChange}></input>
-          <input type="submit"></input>
-          {this.renderError()}
-        </form>
-      </div>
-    )
-  }
+
+  return(
+    <div id="Login">
+      <form onSubmit={handleLogin}>
+        <h3>Login</h3>
+        <label> Username: </label>
+        <input type="text" name="name" value={name} onChange={handleNameInput}></input>
+        <label> Password: </label>
+        <input type="password" name="password" value={password} onChange={handlePasswordInput}></input>
+        <input type="submit"></input>
+        {renderError()}
+      </form>
+    </div>
+  )
+
 }
 
 function mapStateToProps(state){

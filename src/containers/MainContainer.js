@@ -4,10 +4,9 @@ import Home from '../components/Home.js';
 import UserShow from '../components/UserShow.js';
 import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Navbar from '../components/Navbar.js';
+import Navbar from '../components/NavBar.js';
 
 const MainContainer = props => {
-
 
   return (
     <div id="MainContainer">

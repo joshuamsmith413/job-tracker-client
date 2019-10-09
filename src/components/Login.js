@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { login } from '../actions';
+import { login, getApps } from '../actions';
+
 import { withRouter } from 'react-router-dom';
 import API from '../API.js';
 
@@ -35,6 +36,11 @@ const Login = props => {
         props.dispatch(login(data))
         localStorage.setItem('token', data.token)
         props.history.push(`/profile`)
+        API.getUserApps(data)
+        .then(r => r.json())
+        .then(data => {
+          props.dispatch(getApps(data))
+        })
       }
     })
     .then(resetFields())

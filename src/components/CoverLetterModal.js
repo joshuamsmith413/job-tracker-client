@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, Button} from 'react-bootstrap';
 
 export default function coverLetter(props) {
-  console.log(props)
+
   return (
     <Modal
       {...props}

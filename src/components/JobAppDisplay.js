@@ -1,63 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CoverLetterModal from './CoverLetterModal';
 import { Button } from 'react-bootstrap';
 
 
 
-class JobAppDisplay extends React.Component {
-  state = {
-    modalShow: false,
-    setModalShow: false
+const JobAppDisplay = props => {
+
+  const [modalShow, setModalShow] = useState(false)
+
+  const renderWeekCheckup = (app) => {
+    return !app.one_week_checkup ? <p>Don't forget to check in in one week!</p> : <p>Noice</p>
   }
-  renderWeekCheckup = (app) => {
-    return app.one_week_checkup ? <p>Don't forget to check in in one week!</p> : <p>Noice</p>
-  }
 
+  return(
+    <React.Fragment>
+      <div className='company'>
+        <strong>{props.app.company}</strong><br/>
+        <small>{props.app.created_at.substring(0, 10)}</small>
+      </div>
+      <div className='position'>
+        {props.app.position}
+      </div>
+      <div className='contact'>
+        {props.app.contact}
+      </div>
+      <div className='coverLetter'>
+        <Button variant='link' onClick={() => setModalShow(true)}>
+          Cover Letter
+        </Button>
+        <CoverLetterModal
+          show={modalShow}
+          app={props.app}
+          onHide={() => setModalShow(false)}
+        />
+      </div>
+      <div className='resume'>
+        link to Resume modal or something
+      </div>
+      <div className='weekCheckup'>
+        {renderWeekCheckup(props.app)}
+      </div>
+      <div className='foundOn'>
+        {props.app.source}
+      </div>
+        </React.Fragment>
+  )
 
-
-  render() {
-
-    return(
-      <React.Fragment>
-        <div className='company'>
-          <strong>{this.props.app.company}</strong><br/>
-          <small>{this.props.app.created_at.substring(0, 10)}</small>
-        </div>
-        <div className='position'>
-          {this.props.app.position}
-        </div>
-        <div className='contact'>
-          {this.props.app.contact}
-        </div>
-        <div className='coverLetter'>
-          <Button variant='link' onClick={() => this.setState({modalShow: true})}>
-            Cover Letter
-          </Button>
-          <CoverLetterModal
-            show={this.state.modalShow}
-            app={this.props.app}
-            onHide={() => this.setState({modalShow: false})}
-          />
-        </div>
-        <div className='resume'>
-          link to Resume modal or something
-        </div>
-        <div className='weekCheckup'>
-          {this.renderWeekCheckup(this.props.app)}
-        </div>
-        <div className='foundOn'>
-          {this.props.app.source}
-        </div>
-          </React.Fragment>
-    )
-  }
 }
 
 export default JobAppDisplay;
-
-
-
-
-// <div className='coverLetter'>
-//   cover letter: {this.props.app.cover_letter}
-// </div>

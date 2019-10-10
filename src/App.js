@@ -8,15 +8,9 @@ import API from './API.js'
 
 const App = props => {
   const token = localStorage.token;
-
-
   useEffect(() => {
     if (token && !props.currentUser.id) {
-      fetch('http://localhost:3000/set_user', {
-        headers: {
-          Authorization: token
-        }
-      })
+      API.autoLogin(token)
       .then(r => r.json())
       .then(data => {
         props.dispatch(login(data))

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { login, getApps } from '../actions';
-
 import { withRouter } from 'react-router-dom';
 import API from '../API.js';
 
@@ -48,7 +47,7 @@ const Login = props => {
 
 
   const renderError = () => {
-    return error ? <div id='error'>{error}</div> : null
+    return error ? <div className='error'>{error}</div> : null
   }
 
 

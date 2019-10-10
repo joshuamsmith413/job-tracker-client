@@ -5,6 +5,7 @@ import UserShow from '../components/UserShow.js';
 import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Navbar from '../components/NavBar.js';
+import EditUser from '../components/EditUser.js';
 
 const MainContainer = props => {
 
@@ -14,6 +15,7 @@ const MainContainer = props => {
       <Route exact path="/" component={Home} />
       <Route exact path="/auth" render={ () => <AuthContainer handleChange={props.handleChange} handleLogin={props.handleLogin} newUser={props.newUser}/>} />
       <Route path="/profile" render={ () => <UserShow/>} />
+      <Route path="/edit" render={ () => <EditUser/>} />
     </div>
   )
 };

@@ -37,7 +37,7 @@ const SignUp = props => {
   }
 
   const renderError = () => {
-    return error ? <div id='error'>{error}</div> : null
+    return error ? <div className='error'>{error}</div> : null
   }
 
   const handleNameInput = e => {

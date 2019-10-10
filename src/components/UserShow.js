@@ -1,8 +1,8 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import JobAppForm from './JobAppForm.js';
-import JobAppDisplay from './JobAppDisplay';
+import JobAppDisplay from './JobAppDisplay.js';
 
 const UserShow = props => {
 
@@ -13,7 +13,7 @@ const UserShow = props => {
       })
     }
   }
-  console.log(props.jobApps)
+  console.log(props)
   return (
     <div id='UserShow'>
       <JobAppForm />
@@ -26,6 +26,9 @@ const UserShow = props => {
         <div className='weekCheckup'><u><strong>Week one Checkin</strong></u></div>
         <div className='foundOn'><u><strong>Found On</strong></u></div>
         {passAppProps(props.jobApps)}
+      </div>
+      <div>
+        <Link to='/edit'>Edit User</Link>
       </div>
     </div>
   )

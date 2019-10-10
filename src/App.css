@@ -6,7 +6,7 @@
   padding: 1%;
 }
 
-#error {
+.error {
   padding-left: 15%;
   color: red;
   font-size: 12px;

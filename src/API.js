@@ -54,13 +54,24 @@ const createUser = params => {
   })
 }
 
+const updateUser = (params, userId) => {
+  return fetch(`http://localhost:3000/users/${userId}`, {
+  method: 'PATCH',
+  headers: {
+    'Content-Type': 'application/json',
+    Accept: 'application/json'
+  },
+  body: JSON.stringify(params)
+  })
+}
 
 const API = {
   createJobApp,
   login,
   getUserApps,
   createUser,
-  autoLogin
+  autoLogin,
+  updateUser
 }
 
 export default API;

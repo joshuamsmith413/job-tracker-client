@@ -35,6 +35,14 @@ const login = params => {
     })
 }
 
+const autoLogin = token => {
+  return fetch('http://localhost:3000/set_user', {
+    headers: {
+      Authorization: token
+    }
+  })
+}
+
 const createUser = params => {
   return fetch('http://localhost:3000/users', {
     method: "POST",
@@ -51,7 +59,8 @@ const API = {
   createJobApp,
   login,
   getUserApps,
-  createUser
+  createUser,
+  autoLogin
 }
 
 export default API;

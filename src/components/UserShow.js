@@ -6,14 +6,14 @@ import JobAppDisplay from './JobAppDisplay';
 
 const UserShow = props => {
 
-  const passAppProps = () => {
-    if (props.jobApps.length > 0) {
-      return props.jobApps.map(app => {
+  const passAppProps = (apps) => {
+    if (apps.length > 0) {
+      return apps.map(app => {
         return  <JobAppDisplay app={app}/>
       })
     }
   }
-
+  console.log(props.jobApps)
   return (
     <div id='UserShow'>
       <JobAppForm />
@@ -25,7 +25,7 @@ const UserShow = props => {
         <div className='resume'><u><strong>Resume</strong></u></div>
         <div className='weekCheckup'><u><strong>Week one Checkin</strong></u></div>
         <div className='foundOn'><u><strong>Found On</strong></u></div>
-        {passAppProps()}
+        {passAppProps(props.jobApps)}
       </div>
     </div>
   )

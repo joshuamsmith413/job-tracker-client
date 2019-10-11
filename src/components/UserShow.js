@@ -18,6 +18,30 @@ const UserShow = props => {
     }
   }
 
+  const renderCurrent = apps => {
+    if(apps.length > 0) {
+      return apps.map(app => {
+        if(app.current) {
+          return (
+            <JobAppDisplay app={app} />
+          )
+        }
+      })
+    }
+  }
+
+  const renderInterview = apps => {
+    if(apps.length > 0) {
+      return apps.map(app => {
+        if(app.interview) {
+          return (
+            <JobAppDisplay app={app} />
+          )
+        }
+      })
+    }
+  }
+
   const deleteUser = () => {
     API.destroyUser(props.currentUser.id)
     .then(r => r.json())
@@ -48,6 +72,7 @@ const UserShow = props => {
     <div id='UserShow'>
       <JobAppForm />
       <div id='JobAppDisplay'>
+        <h3>Current Applications</h3>
         <div className='company'><u><strong>Company</strong></u></div>
         <div className='position'><u><strong>Position</strong></u></div>
         <div className='contact'><u><strong>Contact</strong></u></div>
@@ -55,7 +80,10 @@ const UserShow = props => {
         <div className='resume'><u><strong>Resume</strong></u></div>
         <div className='weekCheckup'><u><strong>Week one Checkin</strong></u></div>
         <div className='foundOn'><u><strong>Found On</strong></u></div>
-        {passAppProps(props.jobApps)}
+        <div className='empty'></div>
+        {renderCurrent(props.jobApps)}
+        <h3>Companies you have interviewed with</h3>
+        {renderInterview(props.jobApps)}
       </div>
       <div>
         <Link to='/edit'>Edit User</Link>

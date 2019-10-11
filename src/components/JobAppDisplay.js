@@ -12,6 +12,7 @@ const JobAppDisplay = props => {
     return !app.one_week_checkup ? <p>Don't forget to check in in one week!</p> : <p>Noice</p>
   }
 
+
   return(
     <React.Fragment>
       <div className='company'>

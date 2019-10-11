@@ -65,13 +65,25 @@ const updateUser = (params, userId) => {
   })
 }
 
+const destroyUser = userId => {
+  return fetch(`http://localhost:3000/users/${userId}`, {
+  method: 'DELETE',
+  headers: {
+    'Content-Type': 'application/json',
+    Accept: 'application/json'
+  },
+  body: JSON.stringify(userId)
+  })
+}
+
 const API = {
   createJobApp,
   login,
   getUserApps,
   createUser,
   autoLogin,
-  updateUser
+  updateUser,
+  destroyUser
 }
 
 export default API;

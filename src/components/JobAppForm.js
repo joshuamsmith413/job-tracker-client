@@ -50,7 +50,6 @@ const JobAppForm = props => {
     e.preventDefault()
     const userId = props.currentUser.id
     const params = {userId, company, cover, contact, position, source, resume}
-    debugger
     API.createJobApp(params)
     .then(r => r.json())
     .then(data => {

@@ -3,6 +3,10 @@ import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import JobAppForm from './JobAppForm.js';
 import JobAppDisplay from './JobAppDisplay.js';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import { logout, dropApps } from '../actions';
+import API from '../API.js';
 
 const UserShow = props => {
 
@@ -13,7 +17,33 @@ const UserShow = props => {
       })
     }
   }
-  console.log(props)
+
+  const deleteUser = () => {
+    API.destroyUser(props.currentUser.id)
+    .then(r => r.json())
+    .then(data => alert(data.message))
+      props.dispatch(logout())
+      props.dispatch(dropApps())
+      localStorage.removeItem("token")
+      props.history.push(`/`)
+  }
+
+  const handleDeteButton = () => {
+    confirmAlert({
+     title: 'Confirm to Delete',
+     message: 'Are you sure to do this.',
+     buttons: [
+       {
+         label: 'Yes',
+         onClick: () => deleteUser()
+       },
+       {
+         label: 'No',
+         onClick: () => null
+       }
+     ]
+   });
+  }
   return (
     <div id='UserShow'>
       <JobAppForm />
@@ -29,6 +59,7 @@ const UserShow = props => {
       </div>
       <div>
         <Link to='/edit'>Edit User</Link>
+        <button onClick={handleDeteButton}>Delete user</button>
       </div>
     </div>
   )

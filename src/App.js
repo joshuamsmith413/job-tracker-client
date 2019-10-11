@@ -7,23 +7,30 @@ import { login, getApps } from './actions';
 import API from './API.js'
 
 const App = props => {
+  const { currentUser, apps} = props;
   const token = localStorage.token;
+
   useEffect(() => {
-    if (token && !props.currentUser.id) {
+    let error = '';
+    if (token && !currentUser) {
       API.autoLogin(token)
       .then(r => r.json())
       .then(data => {
         props.dispatch(login(data))
       })
     }
-    if (props.currentUser && props.apps.length === 0 ) {
-      API.getUserApps(props.currentUser)
+    if (currentUser !== {} && props.apps.length === 0 && error === '') {
+      API.getUserApps(currentUser)
       .then(r => r.json())
       .then(data => {
+        if(data) {
+;
+        } else {
         props.dispatch(getApps(data))
+        }
       })
     }
-  })
+  }, [token, apps, currentUser])
 
   return (
     <div className="App">

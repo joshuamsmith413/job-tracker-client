@@ -25,7 +25,7 @@ const Navbar = props => {
   }
 
   const loggedinRenderConditions = (user) => {
-    if (user.name) {
+    if (user) {
       return(
         <span>
           Hi {props.currentUser.name}

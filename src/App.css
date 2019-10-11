@@ -6,6 +6,10 @@
   padding: 1%;
 }
 
+#UserShow h3 {
+  grid-column: 4 / 9
+}
+
 .error {
   padding-left: 15%;
   color: red;
@@ -43,5 +47,9 @@
 }
 
 .foundOn {
-  grid-column: 9 / 9;
+  grid-column: 9 / 10;
+}
+
+.empty {
+  grid-column: 10 / 12;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { withRouter } from 'react-router-dom';
 import MainContainer from './containers/MainContainer.js';
@@ -8,6 +8,7 @@ import API from './API.js'
 
 const App = props => {
   const { currentUser, apps} = props;
+  const [error, setError] = useState('')
   const token = localStorage.token;
 
   useEffect(() => {
@@ -23,8 +24,8 @@ const App = props => {
       API.getUserApps(currentUser)
       .then(r => r.json())
       .then(data => {
-        if(data) {
-;
+        if(data.error) {
+          setError(data.error)
         } else {
         props.dispatch(getApps(data))
         }

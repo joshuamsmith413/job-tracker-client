@@ -16,7 +16,7 @@ const JobAppForm = props => {
   const resetform = () => {
     setCompany('');
     setCover('');
-    setCover('');
+    setContact('');
     setPosition('');
     setSource('');
     setResume('');
@@ -63,17 +63,17 @@ const JobAppForm = props => {
       <h3>Add an App</h3>
       <form id="formapp" onSubmit={handleNewApp}>
         <label>Company Name:</label>
-          <input type='text' name='company' value={company} onChange={handleCompanyInput}/>
+          <input type='text' name='company' value={company} onChange={handleCompanyInput}/><br/>
         <label>Contact:</label>
-          <input type='text' name='contact' value={contact} onChange={handleContactInput} />
+          <input type='text' name='contact' value={contact} onChange={handleContactInput} /><br/>
         <label>Position:</label>
-          <input type='text' name='position' value={position} onChange={handlePositionInput} />
+          <input type='text' name='position' value={position} onChange={handlePositionInput} /><br/>
         <label>Found on:</label>
-          <input type='text' name='source' value={source} onChange={handleSourceInput}/>
+          <input type='text' name='source' value={source} onChange={handleSourceInput}/><br/>
         <label>Resume:</label>
-          <input type='text' name='resume' value={resume} onChange={handleResumeInput} />
+          <input type='text' name='resume' value={resume} onChange={handleResumeInput} /><br/>
         <label>Cover Letter:</label>
-          <textarea name='cover' value={cover} onChange={handleCoverInput}/>
+          <textarea name='cover' value={cover} onChange={handleCoverInput}/><br/>
         <input type="submit"/>
       </form>
     </div>

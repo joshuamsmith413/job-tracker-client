@@ -22,6 +22,10 @@
   grid-column-gap: 3em;
 }
 
+.EditAppLink {
+  grid-column: 2;
+}
+
 .company {
   grid-column: 3;
 }

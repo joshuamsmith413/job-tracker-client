@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import JobAppForm from './JobAppForm.js';
 import JobAppDisplay from './JobAppDisplay.js';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import { logout, dropApps } from '../actions';
+import { logout, dropApps, getApps } from '../actions';
 import API from '../API.js';
 
 const UserShow = props => {
+
+  useEffect(() => {
+    if(props.currentUser && props.jobApps.length === 0) {
+      API.getUserApps(props.currentUser.id)
+      .then(r => r.json())
+      .then(data => {
+        props.dispatch(getApps(data))
+      })
+    }
+  })
 
   const passAppProps = (apps) => {
     if (apps.length > 0) {
@@ -86,7 +96,7 @@ const UserShow = props => {
         {renderInterview(props.jobApps)}
       </div>
       <div>
-        <Link to='/edit'>Edit User</Link>
+        <Link to='/edit/user'>Edit User</Link>
         <button onClick={handleDeteButton}>Delete user</button>
       </div>
     </div>
@@ -95,8 +105,8 @@ const UserShow = props => {
 
 function mapStateToProps(state){
     return {
-        currentUser: state.currentUser,
-        jobApps : state.jobApps
+      currentUser: state.currentUser,
+      jobApps : state.jobApps
     }
 }
 

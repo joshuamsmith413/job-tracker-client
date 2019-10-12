@@ -20,17 +20,6 @@ const App = props => {
         props.dispatch(login(data))
       })
     }
-    if (currentUser !== {} && props.apps.length === 0 && error === '') {
-      API.getUserApps(currentUser)
-      .then(r => r.json())
-      .then(data => {
-        if(data.error) {
-          setError(data.error)
-        } else {
-        props.dispatch(getApps(data))
-        }
-      })
-    }
   }, [token, apps, currentUser])
 
   return (

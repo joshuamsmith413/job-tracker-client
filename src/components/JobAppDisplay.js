@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import CoverLetterModal from './CoverLetterModal';
 import { Button } from 'react-bootstrap';
-
-
+import { Link } from 'react-router-dom';
 
 const JobAppDisplay = props => {
 
@@ -15,6 +14,9 @@ const JobAppDisplay = props => {
 
   return(
     <React.Fragment>
+      <div className='EditAppLink'>
+        <Link to={{ pathname: `/edit/app/${props.app.id}`, state: {app : props.app} }} >Edit App</Link>
+      </div>
       <div className='company'>
         <strong>{props.app.company}</strong><br/>
         <small>{props.app.created_at.substring(0, 10)}</small>

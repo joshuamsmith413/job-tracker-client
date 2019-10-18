@@ -30,8 +30,13 @@
 
 #JobAppForm {
   grid-row: 1;
-  grid-column: 4 / 12;
+  grid-column: 3 / 5;
   padding-bottom: 2%;
+}
+
+#noApps {
+  grid-row: 1;
+  grid-column: 6 / 10;
 }
 
 #currentApp {

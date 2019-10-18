@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import JobAppForm from './JobAppForm.js';
-import JobAppDisplay from './JobAppDisplay.js';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { logout, dropApps, getApps } from '../actions';
+import ShowCompanyLink from './ShowCompanyLink.js'
 import API from '../API.js';
+import { Button } from 'react-bootstrap';
 
 const UserShow = props => {
 
@@ -20,20 +21,42 @@ const UserShow = props => {
     }
   })
 
-  const passAppProps = (apps) => {
-    if (apps.length > 0) {
+  const renderCurrent = apps => {
+    if(apps.length > 0) {
       return apps.map(app => {
-        return  <JobAppDisplay app={app}/>
+        if(app.current && !app.interview && !app.response && !app.one_week_checkup) {
+          return(
+            <div>
+              <ShowCompanyLink app={app} />
+            </div>
+          )
+        }
       })
     }
   }
 
-  const renderCurrent = apps => {
+  const renderWeekCheckup = apps => {
     if(apps.length > 0) {
       return apps.map(app => {
-        if(app.current) {
-          return (
-            <JobAppDisplay app={app} />
+        if(!app.response && !app.interview && app.current && app.one_week_checkup) {
+          return(
+            <div>
+              <ShowCompanyLink app={app} />
+            </div>
+          )
+        }
+      })
+    }
+  }
+
+  const renderResponse = apps => {
+    if(apps.length > 0) {
+      return apps.map(app => {
+        if(app.response && !app.interview && app.current && app.one_week_checkup) {
+          return(
+            <div>
+              <ShowCompanyLink app={app} />
+            </div>
           )
         }
       })
@@ -43,9 +66,25 @@ const UserShow = props => {
   const renderInterview = apps => {
     if(apps.length > 0) {
       return apps.map(app => {
-        if(app.interview) {
-          return (
-            <JobAppDisplay app={app} />
+        if(app.current && app.interview && app.response && app.one_week_checkup) {
+          return(
+            <div>
+              <ShowCompanyLink app={app} />
+            </div>
+          )
+        }
+      })
+    }
+  }
+
+  const renderArchive = apps => {
+    if(apps.length > 0) {
+      return apps.map(app => {
+        if(!app.current) {
+          return(
+            <div>
+              <ShowCompanyLink app={app} />
+            </div>
           )
         }
       })
@@ -62,7 +101,7 @@ const UserShow = props => {
       props.history.push(`/`)
   }
 
-  const handleDeteButton = () => {
+  const handleDeleteButton = () => {
     confirmAlert({
      title: 'Confirm to Delete',
      message: 'Are you sure to do this.',
@@ -78,30 +117,51 @@ const UserShow = props => {
      ]
    });
   }
+
+  const goToEditUser = () => {
+    props.history.push(`/edit/user/${props.currentUser.id}`)
+  }
+
   return (
-    <div id='UserShow'>
+    <div id='userShowContainer'>
       <JobAppForm />
-      <div id='JobAppDisplay'>
-        <h3>Current Applications</h3>
-        <div className='company'><u><strong>Company</strong></u></div>
-        <div className='position'><u><strong>Position</strong></u></div>
-        <div className='contact'><u><strong>Contact</strong></u></div>
-        <div className='coverLetter'><u><strong>Cover Letter</strong></u></div>
-        <div className='resume'><u><strong>Resume</strong></u></div>
-        <div className='weekCheckup'><u><strong>Week one Checkin</strong></u></div>
-        <div className='foundOn'><u><strong>Found On</strong></u></div>
-        <div className='empty'></div>
-        {renderCurrent(props.jobApps)}
-        <h3>Companies you have interviewed with</h3>
-        {renderInterview(props.jobApps)}
+      <div id='emptystart'></div>
+      <div id='UserShow'>
+          <div id='currentApp'>
+            <h5>Current</h5>
+            {renderCurrent(props.jobApps)}
+          </div>
+          <div id='checkedInApp'>
+            <h5>Check In</h5>
+            {renderWeekCheckup(props.jobApps)}
+          </div>
+          <div id='responseApp'>
+            <h5>Responded</h5>
+            {renderResponse(props.jobApps)}
+          </div>
+          <div id='interviewApp'>
+            <h5>Interviewed</h5><br/>
+            {renderInterview(props.jobApps)}
+          </div>
+          <div id='archiveApp'>
+            <h5>Archived</h5><br/>
+            {renderArchive(props.jobApps)}
+          </div>
       </div>
-      <div>
-        <Link to='/edit/user'>Edit User</Link>
-        <button onClick={handleDeteButton}>Delete user</button>
+      <div id='emptyending'></div>
+      <div id='userButtons'>
+        <Button onClick={handleDeleteButton}>
+          Delete User
+        </Button>{" "}
+        <Button onClick={goToEditUser}>
+          Edit User
+        </Button>
       </div>
     </div>
   )
 }
+
+
 
 function mapStateToProps(state){
     return {

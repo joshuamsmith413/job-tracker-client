@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import JobAppForm from './JobAppForm.js';
 import { getApps } from '../actions';
-import API from '../API.js'
+import API from '../API.js';
+import { Button } from 'react-bootstrap';
 
 const EditApp = props => {
 
@@ -13,8 +13,6 @@ const EditApp = props => {
   const [position, setPosition] = useState('');
   const [source, setSource] = useState('');
   const [resume, setResume] = useState('');
-
-
 
   useEffect(() => {
     setCompany(props.location.state.app.company);
@@ -71,11 +69,11 @@ const EditApp = props => {
         <input type='text' name='position' value={position} onChange={handlePositionInput} /><br/>
       <label>Found on:</label>
         <input type='text' name='source' value={source} onChange={handleSourceInput}/><br/>
-      <label>Resume:</label>
+      <label> Link to Resume:</label>
         <input type='text' name='resume' value={resume} onChange={handleResumeInput} /><br/>
-      <label>Cover Letter:</label>
+      <label>Paste Cover Letter:</label>
         <textarea name='cover' value={cover} onChange={handleCoverInput}/><br/>
-      <input type="submit"/>
+      <Button type='submit'>Submit</Button>
     </form>
     </div>
   )

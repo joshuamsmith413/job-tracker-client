@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { addApp } from '../actions';
 import API from '../API.js';
+import { Button } from 'react-bootstrap';
 
 const JobAppForm = props => {
 
@@ -60,21 +61,21 @@ const JobAppForm = props => {
 
   return(
     <div id='JobAppForm'>
-      <h3>Add an App</h3>
+      <h5>Add App</h5>
       <form id="formapp" onSubmit={handleNewApp}>
-        <label>Company Name:</label>
+        <label>Company Name:</label><br/>
           <input type='text' name='company' value={company} onChange={handleCompanyInput}/><br/>
-        <label>Contact:</label>
+        <label>Contact:</label><br/>
           <input type='text' name='contact' value={contact} onChange={handleContactInput} /><br/>
-        <label>Position:</label>
+        <label>Position:</label><br/>
           <input type='text' name='position' value={position} onChange={handlePositionInput} /><br/>
-        <label>Found on:</label>
+        <label>Found on:</label><br/>
           <input type='text' name='source' value={source} onChange={handleSourceInput}/><br/>
-        <label>Resume:</label>
+        <label>Link To Resume:</label><br/>
           <input type='text' name='resume' value={resume} onChange={handleResumeInput} /><br/>
-        <label>Cover Letter:</label>
+        <label>Paste Cover Letter:</label><br/>
           <textarea name='cover' value={cover} onChange={handleCoverInput}/><br/>
-        <input type="submit"/>
+        <Button type='submit'>Submit</Button>
       </form>
     </div>
   )

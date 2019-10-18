@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { withRouter } from 'react-router-dom';
 import MainContainer from './containers/MainContainer.js';
 import { connect } from 'react-redux';
-import { login, getApps } from './actions';
+import { login } from './actions';
 import API from './API.js'
 
 const App = props => {
   const { currentUser, apps} = props;
-  const [error, setError] = useState('')
   const token = localStorage.token;
 
   useEffect(() => {
-    let error = '';
     if (token && !currentUser) {
       API.autoLogin(token)
       .then(r => r.json())
@@ -20,10 +18,10 @@ const App = props => {
         props.dispatch(login(data))
       })
     }
-  }, [token, apps, currentUser])
+  }, [token, apps, currentUser, props])
 
   return (
-    <div className="App">
+    <div id="app">
       <MainContainer />
     </div>
   );

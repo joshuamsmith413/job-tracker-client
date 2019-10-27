@@ -70,7 +70,13 @@ const JobAppForm = props => {
         <label>Position:</label><br/>
           <input type='text' name='position' value={position} onChange={handlePositionInput} /><br/>
         <label>Found on:</label><br/>
-          <input type='text' name='source' value={source} onChange={handleSourceInput}/><br/>
+            <select name="source" onChange={handleSourceInput} value={source}>
+              <option></option>
+              <option value="https://www.linkedin.com">Linkedin</option>
+              <option value="https://www.angel.co">Angel List</option>
+              <option value="https://www.google.com">Google</option>
+              <option value="https://www.indeed.com">Indeed</option>
+            </select>
         <label>Link To Resume:</label><br/>
           <input type='text' name='resume' value={resume} onChange={handleResumeInput} /><br/>
         <label>Paste Cover Letter:</label><br/>
@@ -84,8 +90,8 @@ const JobAppForm = props => {
 
 function mapStateToProps(state){
     return {
-        currentUser: state.currentUser,
-        jobApps: state.jobApps
+      currentUser: state.currentUser,
+      jobApps: state.jobApps
     }
 }
 

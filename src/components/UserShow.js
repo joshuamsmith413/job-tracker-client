@@ -1,36 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import JobAppForm from './JobAppForm.js';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import { logout, dropApps, getApps } from '../actions';
+import { logout, dropApps } from '../actions';
 import ShowCompanyLink from './ShowCompanyLink.js'
 import API from '../API.js';
 import { Button } from 'react-bootstrap';
 
 const UserShow = props => {
-
-  const [status, setStatus] = useState(false)
-console.log(status)
-  useEffect(() => {
-    if(props.currentUser && props.jobApps.length === 0 && status === false) {
-      API.getUserApps(props.currentUser.id)
-      .then(r => r.json())
-      .then(data => {
-        if (data.status) {
-          setStatus(data.status)
-        } else {
-          props.dispatch(getApps(data))
-          setStatus(false)
-        }
-      })
-    }
-  })
-
-  const AddAppMessage = () => {
-    return status === true ? <h5>Add an app to see it below!</h5> : null
-  }
 
   const renderCurrent = apps => {
     if(apps.length > 0) {
@@ -117,17 +96,18 @@ console.log(status)
      title: 'Confirm to Delete',
      message: 'Are you sure to do this.',
      buttons: [
-       {
-         label: 'Yes',
-         onClick: () => deleteUser()
-       },
-       {
-         label: 'No',
-         onClick: () => null
-       }
+      {
+        label: 'Yes',
+        onClick: () => deleteUser()
+      },
+      {
+        label: 'No',
+        onClick: () => null
+      }
      ]
    });
   }
+
 
   const goToEditUser = () => {
     props.history.push(`/edit/user/${props.currentUser.id}`)
@@ -137,7 +117,6 @@ console.log(status)
     <div id='userShowContainer'>
       <JobAppForm />
       <div id="noApps">
-        {AddAppMessage()}
       </div>
       <div id='emptystart'></div>
       <div id='UserShow'>

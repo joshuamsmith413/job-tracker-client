@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { withRouter } from 'react-router-dom';
 import MainContainer from './containers/MainContainer.js';
 import { connect } from 'react-redux';
-import { login } from './actions';
+import { login, getApps } from './actions';
 import API from './API.js'
 
 const App = props => {
-  const { currentUser, apps} = props;
+  const [status, setStatus] = useState(false)
+  const { currentUser } = props;
   const token = localStorage.token;
 
   useEffect(() => {
@@ -18,7 +19,19 @@ const App = props => {
         props.dispatch(login(data))
       })
     }
-  }, [token, apps, currentUser, props])
+    if(currentUser && props.apps.length === 0 && status === false) {
+      API.getUserApps(currentUser.id)
+      .then(r => r.json())
+      .then(data => {
+        if (data.status) {
+          setStatus(data.status)
+        } else {
+          props.dispatch(getApps(data))
+          setStatus(false)
+        }
+      })
+    }
+  })
 
   return (
     <div id="app">
@@ -30,8 +43,8 @@ const App = props => {
 
 function mapStateToProps(state){
     return {
-        currentUser: state.currentUser,
-        apps: state.jobApps
+      currentUser: state.currentUser,
+      apps: state.jobApps
     }
 }
 

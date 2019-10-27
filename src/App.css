@@ -12,7 +12,6 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(5, 1fr);
-
 }
 
 #UserShow {
@@ -68,4 +67,24 @@
 #emptyending {
   grid-column: 11 / 12;
   grid-row: 1 / 5;
+}
+
+#homePage {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+#greeting {
+  grid-column: 2 / 9;
+  grid-row: 1;
+}
+
+#jobSites {
+  grid-column: 2 / 9;
+  grid-row: 2;
+}
+
+.jobSites-buttons {
+  padding: 2%;
 }

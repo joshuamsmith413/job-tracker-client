@@ -76,7 +76,7 @@ const JobAppForm = props => {
               <option value="https://www.angel.co">Angel List</option>
               <option value="https://www.google.com">Google</option>
               <option value="https://www.indeed.com">Indeed</option>
-            </select>
+            </select><br/>
         <label>Link To Resume:</label><br/>
           <input type='text' name='resume' value={resume} onChange={handleResumeInput} /><br/>
         <label>Paste Cover Letter:</label><br/>

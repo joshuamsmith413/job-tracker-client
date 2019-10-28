@@ -20,7 +20,7 @@ const Navbar = props => {
     return pathname !== '/profile' ? <Link to='/profile'>My Jobs</Link> : null
   }
 
-  const homePageRenderConditions = pathname => {
+  const homeLinkRenderConditions = pathname => {
     return pathname !== '/' ? <Link to='/'>Home</Link> : null
   }
 
@@ -29,7 +29,7 @@ const Navbar = props => {
       return(
         <span>
           Hi {props.currentUser.name}
-          <button onClick={handleLogout}>Logout</button>
+          <Link onClick={handleLogout}>Logout</Link>
           {myJobRenderConditions(props.history.location.pathname)}
         </span>
       )
@@ -41,8 +41,12 @@ const Navbar = props => {
 
   return(
     <div id='Navbar'>
-      {loggedinRenderConditions(props.currentUser)}
-      {homePageRenderConditions(props.history.location.pathname)}
+      <span id='loggedin'>
+        {loggedinRenderConditions(props.currentUser)}
+      </span>
+      <span id='homeLink'>
+        {homeLinkRenderConditions(props.history.location.pathname)}
+      </span>
     </div>
   )
 

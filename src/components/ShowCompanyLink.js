@@ -1,23 +1,22 @@
 import React, {useState} from 'react';
 import AppModal from './AppModal.js';
-import { withRouter } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { withRouter, Link } from 'react-router-dom';
 
 const ShowCompanyLink = props => {
 
   const [modalShow, setModalShow] = useState(false)
 
   return (
-    <React.Fragment>
-      <Button variant='link' onClick={() => setModalShow(true)}>
+    <div className="ShowCompanyLink" key={props.app.id}>
+      <Link onClick={() => setModalShow(true)}>
         {props.app.company}
-      </Button>
+      </Link>
       <AppModal
         show={modalShow}
         app={props.app}
         onHide={() => setModalShow(false)}
       />
-  </React.Fragment>
+  </div>
   )
 }
 

@@ -4,13 +4,16 @@
 
 #Navbar {
   padding-bottom: 2%;
+  display: block;
 }
 
 #loggedin {
+  float: right;
   padding: 2%;
 }
 
 #homeLink {
+
   padding: 2%;
 }
 
@@ -20,7 +23,7 @@
   font-size: 12px;
 }
 
-#userShowContainer {
+#ProfileContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;

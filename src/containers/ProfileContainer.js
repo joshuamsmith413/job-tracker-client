@@ -7,7 +7,7 @@ import UserMods from '../components/UserMods';
 const ProfileContainer = () => {
 
   return (
-    <div id='userShowContainer'>
+    <div id='ProfileContainer'>
       <JobAppForm />
       <JobAppDisplay />
       <UserMods />

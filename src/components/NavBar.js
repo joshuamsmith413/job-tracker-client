@@ -25,17 +25,7 @@ const Navbar = props => {
   }
 
   const loggedinRenderConditions = (user) => {
-    if (user) {
-      return(
-        <span>
-          Hi {props.currentUser.name}
-          <Link onClick={handleLogout}>Logout</Link>
-          {myJobRenderConditions(props.history.location.pathname)}
-        </span>
-      )
-    } else {
-      return authRenderConditions(props.history.location.pathname)
-    }
+    return user ? <span>Hi {props.currentUser.name} {' '}<Link onClick={handleLogout}>Logout</Link></span> : <span>{authRenderConditions(props.history.location.pathname)}</span>
   }
 
 
@@ -45,6 +35,7 @@ const Navbar = props => {
         {loggedinRenderConditions(props.currentUser)}
       </span>
       <span id='homeLink'>
+        {myJobRenderConditions(props.history.location.pathname)}
         {homeLinkRenderConditions(props.history.location.pathname)}
       </span>
     </div>

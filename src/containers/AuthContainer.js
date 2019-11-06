@@ -9,7 +9,7 @@ const AuthContainer = props => {
   return(
     <div id="AuthContainer">
       <SignUp />
-      <Login handleLogin={props.handleLogin} handleChange={props.handleChange} newUser={props.newUser}/>
+      <Login />
     </div>
   )
 }

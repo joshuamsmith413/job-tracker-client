@@ -20,29 +20,24 @@ const Navbar = props => {
     return pathname !== '/profile' ? <Link to='/profile'>My Jobs</Link> : null
   }
 
-  const homePageRenderConditions = pathname => {
+  const homeLinkRenderConditions = pathname => {
     return pathname !== '/' ? <Link to='/'>Home</Link> : null
   }
 
   const loggedinRenderConditions = (user) => {
-    if (user) {
-      return(
-        <span>
-          Hi {props.currentUser.name}
-          <button onClick={handleLogout}>Logout</button>
-          {myJobRenderConditions(props.history.location.pathname)}
-        </span>
-      )
-    } else {
-      return authRenderConditions(props.history.location.pathname)
-    }
+    return user ? <span>Hi {props.currentUser.name} {' '}<Link onClick={handleLogout}>Logout</Link></span> : <span>{authRenderConditions(props.history.location.pathname)}</span>
   }
 
 
   return(
     <div id='Navbar'>
-      {loggedinRenderConditions(props.currentUser)}
-      {homePageRenderConditions(props.history.location.pathname)}
+      <span id='loggedin'>
+        {loggedinRenderConditions(props.currentUser)}
+      </span>
+      <span id='homeLink'>
+        {myJobRenderConditions(props.history.location.pathname)}
+        {homeLinkRenderConditions(props.history.location.pathname)}
+      </span>
     </div>
   )
 

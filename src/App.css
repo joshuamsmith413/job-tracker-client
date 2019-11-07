@@ -7,13 +7,17 @@
   display: block;
 }
 
+#Navbar input[type=text], input[type=password] {
+  width: 5em;
+  height: 1em;
+}
+
 #loggedin {
   float: right;
   padding: 2%;
 }
 
 #homeLink {
-
   padding: 2%;
 }
 

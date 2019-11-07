@@ -1,4 +1,5 @@
 import React from 'react';
+import Login from './Login.js';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { logout, dropApps } from '../actions';
@@ -25,7 +26,7 @@ const Navbar = props => {
   }
 
   const loggedinRenderConditions = (user) => {
-    return user ? <span>Hi {props.currentUser.name} {' '}<Link onClick={handleLogout}>Logout</Link></span> : <span>{authRenderConditions(props.history.location.pathname)}</span>
+    return user ? <span>Hi {props.currentUser.name} {' '}<Link onClick={handleLogout}>Logout</Link></span> : <Login />
   }
 
 

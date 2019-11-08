@@ -7,9 +7,13 @@
   display: block;
 }
 
-#Navbar input[type=text], input[type=password] {
+input[type=text], input[type=password] {
   width: 5em;
   height: 1em;
+}
+
+.btn-link {
+  padding: 0px !important;
 }
 
 #loggedin {

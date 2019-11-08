@@ -25,7 +25,6 @@ const SignUp = props => {
            } else if (data.id) {
              props.dispatch(login(data))
              localStorage.setItem('token', data.token)
-             props.history.push(`/profile`)
            }
          })
        } else {

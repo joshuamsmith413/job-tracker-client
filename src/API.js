@@ -81,7 +81,7 @@ const archiveApp = params => {
 
 // USERS
 
-const login = params => {
+const login = (params) => {
   return fetch(`${BASEAPI}auth/login`, {
     method: 'POST',
     headers: {

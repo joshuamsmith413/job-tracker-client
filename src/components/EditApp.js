@@ -14,6 +14,7 @@ const EditApp = props => {
   const [source, setSource] = useState('');
   const [resume, setResume] = useState('');
 
+
   useEffect(() => {
     setCompany(props.location.state.app.company);
     setCover(props.location.state.app.cover_letter);
@@ -23,39 +24,25 @@ const EditApp = props => {
     setResume(props.location.state.app.resume);
   }, [props.location.state.app.company, props.location.state.app.cover_letter, props.location.state.app.contact, props.location.state.app.position, props.location.state.app.source, props.location.state.app.resume])
 
-  const handleCompanyInput = e => {
-    setCompany(e.target.value)
-  }
+  const handleCompanyInput = e => setCompany(e.target.value)
 
-  const handleCoverInput = e => {
-    setCover(e.target.value)
-  }
+  const handleCoverInput = e => setCover(e.target.value)
 
-  const handleContactInput = e => {
-    setContact(e.target.value)
-  }
+  const handleContactInput = e => setContact(e.target.value)
 
-  const handlePositionInput = e => {
-    setPosition(e.target.value)
-  }
+  const handlePositionInput = e => setPosition(e.target.value)
 
-  const handleSourceInput = e => {
-    setSource(e.target.value)
-  }
+  const handleSourceInput = e => setSource(e.target.value)
 
-  const handleResumeInput = e => {
-    setResume(e.target.value)
-  }
+  const handleResumeInput = e => setResume(e.target.value)
 
-  const handleSubmit = e => {
+  const handleSubmit = async(e) => {
     e.preventDefault()
     const params = {company, cover, contact, position, source, resume}
-    API.updateApp(params, props.location.state.app.id)
-    .then(r => r.json())
-    .then(data => {
+    const response = await API.updateApp(params, props.location.state.app.id)
+    const data = await response.json()
       props.dispatch(getApps(data))
       props.history.push(`/profile`)
-    })
   }
 
   return(

@@ -7,23 +7,27 @@ import { logout, dropApps } from '../actions';
 
 const Navbar = props => {
 
+  if (props) {
   const handleLogout = () => {
     localStorage.removeItem("token")
     props.dispatch(logout())
     props.dispatch(dropApps())
   }
 
-  const loggedinRenderConditions = (user) => user ? <span>Hi {props.currentUser.name} {' '}<Link onClick={handleLogout}>Logout</Link></span> : <Login />
+  const loggedinRenderConditions = (user, token) => user ? <span>Hi {props.currentUser.name} {' '}<Link onClick={handleLogout}>Logout</Link></span> : <Login />
 
 
   return(
     <div id='Navbar'>
       <span id='loggedin'>
-        {loggedinRenderConditions(props.currentUser)}
+        {loggedinRenderConditions(props.currentUser, localStorage.token)}
       </span>
     </div>
   )
-
+  //end of component
+} else {
+  return null
+}
 }
 
 function mapStateToProps(state){

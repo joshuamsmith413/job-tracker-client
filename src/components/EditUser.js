@@ -27,19 +27,17 @@ const EditUser = props => {
     setNewPassword(e.target.value)
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const params = {name, password, newPassword}
-    API.updateUser(params, props.currentUser.id)
-    .then(r => r.json())
-    .then(data => {
-      if (data.error) {
-        setError(data.error)
-      } else {
-        props.dispatch(login(data))
-        props.history.push(`/profile`)
-      }
-    })
+    const response = await API.updateUser(params, props.currentUser.id)
+    const data = await response.json()
+    if (data.error) {
+      setError(data.error)
+    } else {
+      props.dispatch(login(data))
+      props.history.push(`/profile`)
+    }
   }
 
   const renderError = () => {

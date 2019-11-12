@@ -9,14 +9,12 @@ import { Button } from 'react-bootstrap';
 
 const UserMods = props => {
 
-  const deleteUser = () => {
-    API.destroyUser(props.currentUser.id)
-    .then(r => r.json())
-    .then(data => alert(data.message))
-      props.dispatch(logout())
-      props.dispatch(dropApps())
-      localStorage.removeItem("token")
-      props.history.push(`/`)
+  const deleteUser = async() => {
+    const response = await API.destroyUser(props.currentUser.id)
+    const data = await response.json()
+    props.dispatch(logout())
+    localStorage.removeItem("token")
+    props.dispatch(dropApps())
   }
 
   const handleDeleteButton = () => {

@@ -22,41 +22,26 @@ const JobAppForm = props => {
     setSource('');
     setResume('');
   }
+  const handleCompanyInput = e => setCompany(e.target.value)
 
-  const handleCompanyInput = e => {
-    setCompany(e.target.value)
-  }
+  const handleCoverInput = e => setCover(e.target.value)
 
-  const handleCoverInput = e => {
-    setCover(e.target.value)
-  }
+  const handleContactInput = e => setContact(e.target.value)
 
-  const handleContactInput = e => {
-    setContact(e.target.value)
-  }
+  const handlePositionInput = e => setPosition(e.target.value)
 
-  const handlePositionInput = e => {
-    setPosition(e.target.value)
-  }
+  const handleSourceInput = e => setSource(e.target.value)
 
-  const handleSourceInput = e => {
-    setSource(e.target.value)
-  }
+  const handleResumeInput = e => setResume(e.target.value)
 
-  const handleResumeInput = e => {
-    setResume(e.target.value)
-  }
-
-  const handleNewApp = e => {
+  const handleNewApp = async(e) => {
     e.preventDefault()
     const userId = props.currentUser.id
     const params = {userId, company, cover, contact, position, source, resume}
-    API.createJobApp(params)
-    .then(r => r.json())
-    .then(data => {
+    const response = await API.createJobApp(params)
+    const data = await response.json()
       props.dispatch(addApp(data))
-    })
-    .then(resetform())
+      resetform()
   }
 
   return(
@@ -64,11 +49,11 @@ const JobAppForm = props => {
       <h5>Add App</h5>
       <form id="formapp" onSubmit={handleNewApp}>
         <label>Company Name:</label><br/>
-          <input type='text' name='company' value={company} onChange={handleCompanyInput}/><br/>
+          <input type='text' name='company' placeholder="Company" value={company} onChange={handleCompanyInput}/><br/>
         <label>Contact:</label><br/>
-          <input type='text' name='contact' value={contact} onChange={handleContactInput} /><br/>
+          <input type='text' name='contact' placeholder='Contact' value={contact} onChange={handleContactInput} /><br/>
         <label>Position:</label><br/>
-          <input type='text' name='position' value={position} onChange={handlePositionInput} /><br/>
+          <input type='text' name='position' placeholder='Position' value={position} onChange={handlePositionInput} /><br/>
         <label>Found on:</label><br/>
             <select name="source" onChange={handleSourceInput} value={source}>
               <option></option>
@@ -78,9 +63,9 @@ const JobAppForm = props => {
               <option value="https://www.indeed.com">Indeed</option>
             </select><br/>
         <label>Link To Resume:</label><br/>
-          <input type='text' name='resume' value={resume} onChange={handleResumeInput} /><br/>
-        <label>Paste Cover Letter:</label><br/>
-          <textarea name='cover' value={cover} onChange={handleCoverInput}/><br/>
+          <input type='text' name='resume' placeholder='resume' value={resume} onChange={handleResumeInput} /><br/>
+        <label>Cover Letter:</label><br/>
+          <textarea name='cover' placeholder='Paste Here' value={cover} onChange={handleCoverInput}/><br/>
         <Button type='submit'>Submit</Button>
       </form>
     </div>

@@ -11,29 +11,25 @@ const RegisterModal = props => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleSignUp = e => {
+  const handleSignUp = async(e) => {
     e.preventDefault()
     const newUser = {name, password}
-    API.createUser(newUser)
-    .then(r => r.json())
-    .then(data => {
-       if(!data.error) {
-         API.login(newUser)
-         .then(r => r.json())
-         .then(data => {
-           if (data.error) {
-             setError(data.error)
-           } else if (data.id) {
-             props.dispatch(login(data))
-             localStorage.setItem('token', data.token)
-           }
-         })
-       } else {
-         alert(`${data.error}`);
-         setName('');
-         setPassword('');
-       }
-     })
+    const res = await API.createUser(newUser)
+    const datas = await res.json()
+     if(!datas.error) {
+        const response = await API.login(newUser)
+        const data = await response.json()
+        if (data.error) {
+          setError(data.error)
+        } else if (data.id) {
+          props.dispatch(login(data))
+          localStorage.setItem('token', data.token)
+        }
+     } else {
+       alert(`${datas.error}`);
+       setName('');
+       setPassword('');
+     }
   }
 
   const renderError = () => error ? <div className='error'>{error}</div> : null
@@ -68,7 +64,7 @@ const RegisterModal = props => {
             Close
           </Button>
           <Button variant="primary" onClick={handleSignUp}>
-            Save Changes
+            Register User
           </Button>
         </Modal.Footer>
       </Modal>

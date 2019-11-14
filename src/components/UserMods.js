@@ -34,9 +34,7 @@ const UserMods = props => {
    });
   }
 
-  const goToEditUser = () => {
-    props.history.push(`/edit/user/${props.currentUser.id}`)
-  }
+  const goToEditUser = () => props.history.push(`/edit/user/${props.currentUser.id}`)
 
   return (
     <div id='userButtons'>

@@ -15,10 +15,8 @@ const Login = props => {
 
   const handleNameInput = e => setName(e.target.value)
 
-
   const handlePasswordInput = e => setPassword(e.target.value)
 
-  console.log(name)
   const resetFields = () => {
     setName('');
     setPassword('');
@@ -27,48 +25,22 @@ const Login = props => {
   const handleLogin = async(e) => {
     e.preventDefault()
     const params = {name, password}
-    let response = await API.login(params)
-    let data = await response.json()
+    const response = await API.login(params)
+    const data = await response.json()
     if (data.error) {
       setError(data.error)
     } else if (data.id) {
       props.dispatch(login(data))
       localStorage.setItem('token', data.token)
       props.history.push(`/`)
-      let res = await API.getUserApps(data)
-      let datas = await res.json()
+      const res = await API.getUserApps(data)
+      const datas = await res.json()
       props.dispatch(getApps(datas))
     }
     resetFields()
   }
 
-  // const handleLogin = e => {
-  //   e.preventDefault()
-  //   const params = {name, password}
-  //   API.login(params)
-  //   .then(r => r.json())
-  //   .then(data => {
-  //     if (data.error) {
-  //       setError(data.error)
-  //     } else if (data.id) {
-  //       props.dispatch(login(data))
-  //       localStorage.setItem('token', data.token)
-  //       props.history.push(`/`)
-  //       API.getUserApps(data)
-  //       .then(r => r.json())
-  //       .then(data => {
-  //         props.dispatch(getApps(data))
-  //       })
-  //     }
-  //   })
-  //   .then(resetFields())
-  // }
-
-
   const renderError = () => error ? <div className='error'>{error}</div> : null
-
-
-
 
   return(
     <span id="Login">
@@ -81,9 +53,8 @@ const Login = props => {
         <RegisterModal show={modalShow} onHide={() => setModalShow(false)}/>
         {renderError()}
       </form>
-  </span>
+    </span>
   )
-
 }
 
 function mapStateToProps(state){

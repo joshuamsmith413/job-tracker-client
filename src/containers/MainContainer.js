@@ -15,7 +15,6 @@ const MainContainer = props => {
       <Navbar />
       <Route exact path="/" component={HomeContainer} />
       <Route exact path="/auth" render={() => <AuthContainer  />} />
-      <Route path="/profile" render={() => <ProfileContainer />} />
       <Route path="/edit/user" render={() => <EditUser />} />
       <Route path='/edit/app' render={() => <EditApp />} />
     </div>

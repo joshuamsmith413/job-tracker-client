@@ -5,7 +5,6 @@ import { Button } from 'react-bootstrap';
 const SourceButtons = props => {
 
   if(props.apps) {
-
     const uniqueSources = apps => {
       const stack = []
       if (apps.length > 1) {

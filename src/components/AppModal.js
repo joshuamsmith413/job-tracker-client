@@ -8,44 +8,34 @@ import { withRouter } from 'react-router-dom';
 
 function AppModal(props) {
 
-const resumeButton = () => {
-  return props.app.resume.includes("https") ? <Button target="_blank" rel="noopener noreferrer" href={props.app.resume}> Resume </Button> : null
+const resumeButton = () => props.app.resume.includes("https") ? <Button target="_blank" rel="noopener noreferrer" href={props.app.resume}> Resume </Button> : null
+
+const updateResponse = async() => {
+  const res = await API.updateResponse(props.app)
+  const data = await res.json()
+  props.dispatch(getApps(data))
+  props.onHide()
 }
 
-const updateResponse = () => {
-  API.updateResponse(props.app)
-  .then(r => r.json())
-  .then(data => {
-    props.dispatch(getApps(data))
-    props.onHide()
-  })
+const updateCheckin = async() => {
+  const res = await API.updateCheckin(props.app)
+  const data = await res.json()
+  props.dispatch(getApps(data))
+  props.onHide()
 }
 
-const updateCheckin = () => {
-  API.updateCheckin(props.app)
-  .then(r => r.json())
-  .then(data => {
-    props.dispatch(getApps(data))
-    props.onHide()
-  })
+const updateInterview = async() => {
+  const res = await API.updateInterview(props.app)
+  const data = await res.json()
+  props.dispatch(getApps(data))
+  props.onHide()
 }
 
-const updateInterview = () => {
-  API.updateInterview(props.app)
-  .then(r => r.json())
-  .then(data => {
-    props.dispatch(getApps(data))
-    props.onHide()
-  })
-}
-
-const archiveApp = () => {
-  API.archiveApp(props.app)
-  .then(r => r.json())
-  .then(data => {
-    props.dispatch(getApps(data))
-    props.onHide()
-  })
+const archiveApp = async() => {
+  const res = await API.archiveApp(props.app)
+  const data = await res.json()
+  props.dispatch(getApps(data))
+  props.onHide()
 }
 
 const handleAppStatus = () => {

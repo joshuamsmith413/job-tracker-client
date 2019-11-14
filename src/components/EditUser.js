@@ -15,44 +15,31 @@ const EditUser = props => {
     setName(props.currentUser.name)
   }, [props.currentUser.name])
 
-  const handleNameInput = e => {
-    setName(e.target.value)
-  }
+  const handleNameInput = e => setName(e.target.value)
 
-  const handleOldPasswordInput = e => {
-    setOldPassword(e.target.value)
-  }
+  const handleOldPasswordInput = e => setOldPassword(e.target.value)
 
-  const handleNewPasswordInput = e => {
-    setNewPassword(e.target.value)
-  }
+  const handleNewPasswordInput = e => setNewPassword(e.target.value)
 
   const handleSubmit = async(e) => {
     e.preventDefault();
     const params = {name, password, newPassword}
     const response = await API.updateUser(params, props.currentUser.id)
     const data = await response.json()
-    if (data.error) {
-      setError(data.error)
-    } else {
-      props.dispatch(login(data))
-      props.history.push(`/profile`)
-    }
+    return data.error ? setError(data.error) : props.dispatch(login(data)), props.history.push(`/`)
   }
 
-  const renderError = () => {
-    return error ? <div className='error'>{error}</div> : null
-  }
+  const renderError = () => error ? <div className='error'>{error}</div> : null
 
   return(
     <div id='edit-user'>
       <form onSubmit={handleSubmit}>
         <label>Edit Name</label>
-          <input type='text' value={name} onChange={handleNameInput}/>
+          <input type='text' value={name} onChange={handleNameInput}/><br/>
         <label>Enter Current Password</label>
-          <input type='password' value={password} onChange={handleOldPasswordInput}/>
+          <input type='password' value={password} onChange={handleOldPasswordInput}/><br/>
         <label>Enter New Password</label>
-          <input type='password' value={newPassword} onChange={handleNewPasswordInput}/>
+          <input type='password' value={newPassword} onChange={handleNewPasswordInput}/><br/>
           <input type='submit'/>
       </form>
       {renderError()}

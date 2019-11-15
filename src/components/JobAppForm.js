@@ -67,6 +67,9 @@ const JobAppForm = props => {
         <label>Cover Letter:</label><br/>
           <textarea name='cover' placeholder='Paste Here' value={cover} onChange={handleCoverInput}/><br/>
         <Button type='submit'>Submit</Button>
+        <Button onClick={() => props.history.push(`/edit/user/${props.currentUser.id}`)}>
+          Edit User
+        </Button>
       </form>
     </div>
   )

@@ -7,7 +7,8 @@ export const login = (user) => {
 
 export const logout = () => {
   return {
-    type: 'LOG_OUT'
+    type: 'LOG_OUT',
+    payload: null
   }
 }
 

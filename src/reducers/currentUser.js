@@ -3,7 +3,7 @@ const currentUserReducer = (state = null, action) => {
     case 'LOGIN_IN':
       return state = action.payload;
       case 'LOG_OUT':
-      return state = null;
+      return state = action.payload;
     default:
     return state;
   }

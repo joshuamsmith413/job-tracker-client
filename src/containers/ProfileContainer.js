@@ -2,20 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 import JobAppForm from '../components/JobAppForm.js';
 import JobAppDisplay from '../components/JobAppDisplay';
-import UserMods from '../components/UserMods';
+import SourceButtons from '../components/SourceButtons.js';
+import { Button } from 'react-bootstrap';
 
 const ProfileContainer = props => {
   if (props.currentUser) {
-  return (
-    <div id='ProfileContainer'>
-      <JobAppForm />
-      <JobAppDisplay />
-      <UserMods />
-    </div>
-  )
-} else {
-  return null
-}
+    return (
+      <div id='ProfileContainer'>
+        <JobAppForm />
+        <JobAppDisplay />
+        <SourceButtons />
+      </div>
+    )
+  } else {
+    return null
+  }
 }
 
 const mapStateToProps = state => {

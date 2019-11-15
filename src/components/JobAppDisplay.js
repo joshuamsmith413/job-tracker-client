@@ -10,9 +10,9 @@ const JobAppDisplay = props => {
         return apps.map(app => {
           if(app.current && !app.interview && !app.response && !app.one_week_checkup) {
             return(
-              <React.Fragment>
+              <div className='company-link'>
                 <ShowCompanyLink app={app} />
-              </React.Fragment>
+              </div>
             )
           }
         })
@@ -24,7 +24,7 @@ const JobAppDisplay = props => {
         return apps.map(app => {
           if(!app.response && !app.interview && app.current && app.one_week_checkup) {
             return(
-              <div>
+              <div className='company-link'>
                 <ShowCompanyLink app={app} />
               </div>
             )
@@ -38,7 +38,7 @@ const JobAppDisplay = props => {
         return apps.map(app => {
           if(app.response && !app.interview && app.current && app.one_week_checkup) {
             return(
-              <div>
+              <div className='company-link'>
                 <ShowCompanyLink app={app} />
               </div>
             )
@@ -52,7 +52,7 @@ const JobAppDisplay = props => {
         return apps.map(app => {
           if(app.current && app.interview && app.response && app.one_week_checkup) {
             return(
-              <div>
+              <div className='company-link'>
                 <ShowCompanyLink app={app} />
               </div>
             )
@@ -66,7 +66,7 @@ const JobAppDisplay = props => {
         return apps.map(app => {
           if(!app.current) {
             return(
-              <div>
+              <div className='company-link'>
                 <ShowCompanyLink app={app} />
               </div>
             )
@@ -82,7 +82,7 @@ const JobAppDisplay = props => {
             {renderCurrent(props.jobApps)}
           </div>
           <div className='JobAppDisplay-child' id='checkedInApp'>
-            <h5>Check In</h5>
+            <h5>Checkin</h5>
             {renderWeekCheckup(props.jobApps)}
           </div>
           <div className='JobAppDisplay-child' id='responseApp'>

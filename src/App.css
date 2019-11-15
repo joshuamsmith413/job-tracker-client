@@ -1,10 +1,46 @@
-#App {
-  padding: 2%;
+#MainContainer {
+  display: block;
 }
 
 #Navbar {
-  display: block;
-  width: 100%;
+  width: 100;
+  text-align: center;
+}
+
+#Navbar span {
+  float: left;
+}
+
+#Navbar Button {
+  margin-left: 2%;
+}
+
+#Navbar h4 {
+  display: inline-block;
+}
+
+#ProfileContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#JobAppForm Button {
+  margin: 2% !important;
+}
+
+#edit-user Button {
+  margin-right: 2% !important;
+}
+
+#JobAppDisplay {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.JobAppDisplay-child {
+  padding: 2%;
 }
 
 input[type=text], input[type=password] {
@@ -17,13 +53,9 @@ input[type=text], input[type=password] {
 }
 
 #loggedin {
-  float: right;
   padding: 2%;
 }
 
-#homeLink {
-  padding: 2%;
-}
 
 .error {
   padding-left: 15%;
@@ -31,55 +63,9 @@ input[type=text], input[type=password] {
   font-size: 12px;
 }
 
-#ProfileContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 
-}
 
-#JobAppForm {
+form {
   margin:auto;
-  /* align-items: center; */
-  padding: 2%;
-}
-
-#JobAppDisplay {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: stretch;
-  padding: 2%;
-  /* align-items: center; */
-}
-
-.JobAppDisplay-child {
-  margin:auto;
-}
-
-#userButtons {
-  margin:auto;
-  padding-top: 2%;
-  grid-row: 3;
-  grid-column: 4 / 10;
-}
-
-#homePage {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-}
-
-#greeting {
-  grid-column: 2 / 9;
-  grid-row: 1;
-}
-
-#jobSites {
-  grid-column: 2 / 9;
-  grid-row: 2;
-}
-
-.jobSites-buttons {
   padding: 2%;
 }

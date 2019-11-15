@@ -11,34 +11,35 @@ const App = props => {
   const { currentUser } = props;
   const token = localStorage.token;
 
-  useEffect(() => {
-    if (token && !currentUser) {
-      API.autoLogin(token)
-      .then(r => r.json())
-      .then(data => {
+
+  if (token && !currentUser) {
+    API.autoLogin(token)
+    .then(r => r.json())
+    .then(data => {
+      if (!data.error) {
         props.dispatch(login(data))
-      })
-    }
-    if(currentUser && props.apps.length === 0 && status === false) {
-      API.getUserApps(currentUser.id)
-      .then(r => r.json())
-      .then(data => {
-        if (data.status) {
-          setStatus(data.status)
-        } else {
-          props.dispatch(getApps(data))
-          setStatus(false)
-        }
-      })
-    }
-  })
+      }
+    })
+  }
+
+  if(currentUser && props.apps.length === 0 && status === false) {
+    API.getUserApps(currentUser.id)
+    .then(r => r.json())
+    .then(data => {
+      if (data.status) {
+        setStatus(data.status)
+      } else {
+        props.dispatch(getApps(data))
+        setStatus(false)
+      }
+    })
+  }
 
   return (
     <div id="app">
       <MainContainer />
     </div>
   );
-
 }
 
 function mapStateToProps(state){

@@ -85,12 +85,9 @@ const handleAppStatus = () => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-      <h6>contact</h6>
-      {props.app.contact}
-      <h6>Cover Letter </h6>
-        <p>
-          {props.app.cover_letter}
-        </p>
+      <strong>contact</strong>: {' ', props.app.contact}
+      <h6><strong>Cover Letter </strong></h6>
+          {props.app.cover_letter}<br/>
         {handleAppStatus()}
       </Modal.Body>
       <Modal.Footer>

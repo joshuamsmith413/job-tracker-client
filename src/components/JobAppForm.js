@@ -56,7 +56,7 @@ const JobAppForm = props => {
           <input type='text' name='position' placeholder='Position' value={position} onChange={handlePositionInput} /><br/>
         <label>Found on:</label><br/>
             <select name="source" onChange={handleSourceInput} value={source}>
-              <option></option>
+              <option>Website</option>
               <option value="https://www.linkedin.com">Linkedin</option>
               <option value="https://www.angel.co">Angel List</option>
               <option value="https://www.google.com">Google</option>

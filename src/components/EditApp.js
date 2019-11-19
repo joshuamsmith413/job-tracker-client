@@ -13,7 +13,7 @@ const EditApp = props => {
   const [position, setPosition] = useState('');
   const [source, setSource] = useState('');
   const [resume, setResume] = useState('');
-
+  console.log(props)
 
   useEffect(() => {
     setCompany(props.location.state.app.company);
@@ -42,7 +42,7 @@ const EditApp = props => {
     const response = await API.updateApp(params, props.location.state.app.id)
     const data = await response.json()
       props.dispatch(getApps(data))
-      props.history.push(`/profile`)
+      props.history.push(`/`)
   }
 
   return(

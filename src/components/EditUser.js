@@ -19,6 +19,7 @@ const EditUser = props => {
     if (name === '') {
       setName(props.currentUser.name)
     }
+
     const handleNameInput = e => setName(e.target.value)
 
     const handleOldPasswordInput = e => setOldPassword(e.target.value)

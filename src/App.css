@@ -63,7 +63,9 @@ input[type=text], input[type=password] {
   font-size: 12px;
 }
 
-
+#EditApp {
+  text-align: center;
+}
 
 form {
   margin:auto;

@@ -50,18 +50,18 @@ const EditApp = props => {
     <form id="formapp" onSubmit={handleSubmit}>
       <label>Company Name:</label>
         <input type='text' name='company' value={company} onChange={handleCompanyInput}/><br/>
-      <label>Contact:</label><br/>
+      <label>Contact:</label>
         <input type='text' name='contact' value={contact} onChange={handleContactInput} /><br/>
-      <label>Position:</label><br/>
+      <label>Position:</label>
         <input type='text' name='position' value={position} onChange={handlePositionInput} /><br/>
-      <label>Found on:</label><br/>
+      <label>Found on:</label>
         <select name="source" onChange={handleSourceInput} value={source}>
           <option value="https://www.linkedin.com">Linkedin</option>
           <option value="https://www.angel.co">Angel List</option>
           <option value="https://www.google.com">Google</option>
           <option value="https://www.indeed.com">Indeed</option>
         </select><br/>
-      <label> Link to Resume:</label><br/>
+      <label> Link to Resume:</label>
         <input type='text' name='resume' value={resume} onChange={handleResumeInput} /><br/>
       <label>Paste Cover Letter:</label><br/>
         <textarea name='cover' value={cover} onChange={handleCoverInput}/><br/>

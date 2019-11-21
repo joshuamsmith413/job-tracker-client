@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import AppModal from './AppModal.js';
 import { withRouter, Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 const ShowCompanyLink = props => {
 
@@ -8,9 +9,9 @@ const ShowCompanyLink = props => {
 
   return (
     <div className="ShowCompanyLink" key={props.app.id}>
-      <Link onClick={() => setModalShow(true)}>
+      <Button variant='link' onClick={() => setModalShow(true)}>
         {props.app.company}
-      </Link>
+      </Button >
       <AppModal
         show={modalShow}
         app={props.app}

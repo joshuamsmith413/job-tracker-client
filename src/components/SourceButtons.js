@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap';
 const SourceButtons = props => {
 
   if(props.apps) {
+
     const uniqueSources = apps => {
       const stack = []
       if (apps.length > 1) {
@@ -22,16 +23,20 @@ const SourceButtons = props => {
     const renderButtons = sources => {
       if (sources.length > 1) {
         return sources.map(source => {
+          const buttonName = source.match(/\.([^\.]+)\./)
+          console.log(source)
           return (
             <div className="jobSites-buttons" key={sources.indexOf(source)}>
-              <Button href={`${source}`} target="_blank" rel="noopener noreferrer">{source}</Button>
+              <Button href={`${source}`} target="_blank" rel="noopener noreferrer">{buttonName[1]}</Button>
             </div>
           )
         })
       } else if (sources.length === 1) {
+        const buttonName = sources[0].match(/\.([^\.]+)\./)
+        console.log(buttonName[1])
         return (
           <div className="jobSites-buttons">
-            <Button href={`${sources[0].source}`} target="_blank" rel="noopener noreferrer">{sources[0].source}</Button>
+            <Button href={`${sources[0]}`} target="_blank" rel="noopener noreferrer">{buttonName[1]}</Button>
           </div>
         )
       }

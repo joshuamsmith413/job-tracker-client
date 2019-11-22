@@ -1,36 +1,32 @@
-#MainContainer {
-  display: block;
-}
+/* NAVIGATION BAR */
 
 #Navbar {
+  padding: 1%;
   width: 100;
   text-align: center;
+  border-bottom: solid;
+  margin-bottom: 1%;
 }
 
-#Navbar span {
+#Navbar p {
+  float: right;
+  padding-right: 1%;
+}
+
+#navButtons {
   float: left;
-}
-
-#Navbar Button {
-  margin-left: 2%;
 }
 
 #Navbar h4 {
   display: inline-block;
 }
 
+/* PROFILE CONTAINER */
+
 #ProfileContainer {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-}
-
-#JobAppForm Button {
-  margin: 2% !important;
-}
-
-#edit-user Button {
-  margin-right: 2% !important;
 }
 
 #JobAppDisplay {
@@ -40,8 +36,57 @@
 }
 
 .JobAppDisplay-child {
+  padding: 1%;
+}
+
+#jobSites {
+  padding-left: 1%;
+}
+
+.jobSites-buttons {
+  margin: 3px;
+}
+
+/* ALL FORMS */
+
+#JobAppForm Button {
+  margin: 2% !important;
+}
+
+#JobAppForm {
+  display: block;
+  text-align: center;
+}
+
+#JobAppForm form {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left
+}
+
+#edit-user Button {
+  margin-right: 2% !important;
+}
+
+form {
+  margin:auto;
   padding: 2%;
 }
+
+#EditApp {
+  display: block;
+  text-align: center;
+}
+
+#EditApp form {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left
+}
+
+/* GENERAL ELEMENT STYLES */
 
 input[type=text], input[type=password] {
   width: 5em;
@@ -52,11 +97,6 @@ input[type=text], input[type=password] {
   padding: 0px !important;
 }
 
-#loggedin {
-  padding: 2%;
-}
-
-
 .error {
   padding-left: 15%;
   color: red;
@@ -65,9 +105,4 @@ input[type=text], input[type=password] {
 
 #EditApp {
   text-align: center;
-}
-
-form {
-  margin:auto;
-  padding: 2%;
 }

@@ -48,13 +48,13 @@ const JobAppForm = props => {
     <div id='JobAppForm'>
       <h5>Add App</h5>
       <form id="formapp" onSubmit={handleNewApp}>
-        <label>Company Name:</label><br/>
+        <label>Company Name:</label>
           <input type='text' name='company' placeholder="Company" value={company} onChange={handleCompanyInput}/><br/>
-        <label>Contact:</label><br/>
+        <label>Contact:</label>
           <input type='text' name='contact' placeholder='Contact' value={contact} onChange={handleContactInput} /><br/>
-        <label>Position:</label><br/>
+        <label>Position:</label>
           <input type='text' name='position' placeholder='Position' value={position} onChange={handlePositionInput} /><br/>
-        <label>Found on:</label><br/>
+        <label>Found on:</label>
             <select name="source" onChange={handleSourceInput} value={source}>
               <option>Website</option>
               <option value="https://www.linkedin.com">Linkedin</option>
@@ -62,9 +62,9 @@ const JobAppForm = props => {
               <option value="https://www.google.com">Google</option>
               <option value="https://www.indeed.com">Indeed</option>
             </select><br/>
-        <label>Link To Resume:</label><br/>
+        <label>Link To Resume:</label>
           <input type='text' name='resume' placeholder='resume' value={resume} onChange={handleResumeInput} /><br/>
-        <label>Cover Letter:</label><br/>
+        <label>Cover Letter:</label>
           <textarea name='cover' placeholder='Paste Here' value={cover} onChange={handleCoverInput}/><br/>
         <Button type='submit'>Submit</Button>
         <Button onClick={() => props.history.push(`/edit/user/${props.currentUser.id}`)}>

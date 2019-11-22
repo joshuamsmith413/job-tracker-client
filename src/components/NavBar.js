@@ -15,15 +15,20 @@ const Navbar = props => {
       props.history.push('/')
     }
 
-    const loggedinRenderConditions = (user) => user ? <span>Hi {props.currentUser.name} <Button variant="link" onClick={handleLogout}>Logout</Button></span> : <Login />
+    const greeting = user => user ? <p>Hi {props.currentUser.name}</p> : <Login />
 
-  const renderHomeLink = () => props.location.pathname.includes('/edit') ? <Button onClick={() => props.history.push('/')} variant="link">Home</Button> : null
+  const logoutButton = user => user ? <span><Button variant="link" onClick={handleLogout}>Logout</Button></span> : null
+
+    const renderHomeLink = () => props.location.pathname.includes('/edit') ? <span><Button onClick={() => props.history.push('/')} variant="link">Home</Button></span> : null
 
 
     return(
       <div id='Navbar'>
-        {loggedinRenderConditions(props.currentUser)}{" "}
-        {renderHomeLink()}
+        {greeting(props.currentUser)}
+        <span id='navButtons'>
+          {logoutButton(props.currentUser)}{' '}
+          {renderHomeLink()}
+        </span>
         <h4>Job Application Tracker</h4>
       </div>
     )
@@ -35,8 +40,8 @@ const Navbar = props => {
 
 function mapStateToProps(state){
     return {
-        currentUser: state.currentUser,
-        jobApps : state.jobApps
+      currentUser: state.currentUser,
+      jobApps : state.jobApps
     }
 }
 

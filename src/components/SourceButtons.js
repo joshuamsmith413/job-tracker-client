@@ -26,18 +26,18 @@ const SourceButtons = props => {
           const buttonName = source.match(/\.([^\.]+)\./)
           console.log(source)
           return (
-            <div className="jobSites-buttons" key={sources.indexOf(source)}>
+            <span className="jobSites-buttons" key={sources.indexOf(source)}>
               <Button href={`${source}`} target="_blank" rel="noopener noreferrer">{buttonName[1]}</Button>
-            </div>
+            </span>
           )
         })
       } else if (sources.length === 1) {
         const buttonName = sources[0].match(/\.([^\.]+)\./)
         console.log(buttonName[1])
         return (
-          <div className="jobSites-buttons">
+          <span className="jobSites-buttons">
             <Button href={`${sources[0]}`} target="_blank" rel="noopener noreferrer">{buttonName[1]}</Button>
-          </div>
+          </span>
         )
       }
     }

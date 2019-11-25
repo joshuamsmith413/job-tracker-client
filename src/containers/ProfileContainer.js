@@ -3,19 +3,19 @@ import { connect } from 'react-redux';
 import JobAppForm from '../components/JobAppForm.js';
 import JobAppDisplay from '../components/JobAppDisplay';
 import SourceButtons from '../components/SourceButtons.js';
-import { Button } from 'react-bootstrap';
+import Login from '../components/Login.js';
 
 const ProfileContainer = props => {
   if (props.currentUser) {
     return (
-      <div id='ProfileContainer'>
+      <div id='profile-container'>
         <JobAppForm />
         <JobAppDisplay />
         <SourceButtons />
       </div>
     )
   } else {
-    return null
+    return <Login />
   }
 }
 

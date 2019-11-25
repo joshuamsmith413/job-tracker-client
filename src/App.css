@@ -1,6 +1,6 @@
 /* NAVIGATION BAR */
 
-#Navbar {
+#nav-bar {
   padding: 1%;
   width: 100;
   text-align: center;
@@ -8,82 +8,63 @@
   margin-bottom: 1%;
 }
 
-#Navbar p {
+#nav-bar p {
   float: right;
   padding-right: 1%;
 }
 
-#navButtons {
-  float: left;
+#nav-bar h4 {
+  display: inline-block;
 }
 
-#Navbar h4 {
-  display: inline-block;
+#nav-buttons {
+  float: left;
 }
 
 /* PROFILE CONTAINER */
 
-#ProfileContainer {
+#profile-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-#JobAppDisplay {
+#job-app-display {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-.JobAppDisplay-child {
+.job-app-display-child {
   padding: 1%;
 }
 
-#jobSites {
+#job-sites {
   padding-left: 1%;
 }
 
-.jobSites-buttons {
+.job-sites-buttons {
   margin: 3px;
 }
 
 /* ALL FORMS */
 
-#JobAppForm Button {
-  margin: 2% !important;
-}
-
-#JobAppForm {
+.form-div {
   display: block;
   text-align: center;
 }
 
-#JobAppForm form {
-  display: inline-block;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left
-}
-
-#edit-user Button {
+.form-div Button {
   margin-right: 2% !important;
 }
 
 form {
-  margin:auto;
-  padding: 2%;
-}
-
-#EditApp {
-  display: block;
-  text-align: center;
-}
-
-#EditApp form {
+  /* margin:auto;
+  padding: 2%; */
   display: inline-block;
   margin-left: auto;
   margin-right: auto;
-  text-align: left
+  text-align: left;
 }
 
 /* GENERAL ELEMENT STYLES */
@@ -101,8 +82,4 @@ input[type=text], input[type=password] {
   padding-left: 15%;
   color: red;
   font-size: 12px;
-}
-
-#EditApp {
-  text-align: center;
 }

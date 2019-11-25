@@ -45,7 +45,7 @@ const JobAppForm = props => {
   }
 
   return(
-    <div id='JobAppForm'>
+    <div className='form-div'>
       <h5>Add App</h5>
       <form id="formapp" onSubmit={handleNewApp}>
         <label>Company Name:</label>

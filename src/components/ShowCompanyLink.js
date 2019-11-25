@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import AppModal from './AppModal.js';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
 const ShowCompanyLink = props => {

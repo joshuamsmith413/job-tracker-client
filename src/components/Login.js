@@ -43,17 +43,17 @@ const Login = props => {
   const renderError = () => error ? <div className='error'>{error}</div> : null
 
   return(
-    <span id="Login">
+    <div className='form-div'>
       <form onSubmit={handleLogin}>
         <label> Username: </label>
-        <input type="text" name="name" value={name} onChange={handleNameInput}></input> {' '}
+        <input type="text" name="name" value={name} onChange={handleNameInput}></input><br/>
         <label> Password: </label>
-        <input type="password" name="password" value={password} onChange={handlePasswordInput}></input> {' '}
-        <Button type="submit" variant="link">Login</Button>{' '}
+        <input type="password" name="password" value={password} onChange={handlePasswordInput}></input> <br/>
+        <Button type="submit">Login</Button>
         <RegisterModal show={modalShow} onHide={() => setModalShow(false)}/>
         {renderError()}
       </form>
-    </span>
+    </div>
   )
 }
 

@@ -1,7 +1,6 @@
 import React from 'react';
-import Login from './Login.js';
 import { connect } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { logout, dropApps } from '../actions';
 import { Button } from 'react-bootstrap';
 
@@ -15,17 +14,17 @@ const Navbar = props => {
       props.history.push('/')
     }
 
-    const greeting = user => user ? <p>Hi {props.currentUser.name}</p> : <Login />
+    const greeting = user => user ? <p>Hi {props.currentUser.name}</p> : null
 
-  const logoutButton = user => user ? <span><Button variant="link" onClick={handleLogout}>Logout</Button></span> : null
+    const logoutButton = user => user ? <span><Button variant="link" onClick={handleLogout}>Logout</Button></span> : null
 
     const renderHomeLink = () => props.location.pathname.includes('/edit') ? <span><Button onClick={() => props.history.push('/')} variant="link">Home</Button></span> : null
 
 
     return(
-      <div id='Navbar'>
+      <div id='nav-bar'>
         {greeting(props.currentUser)}
-        <span id='navButtons'>
+        <span id='nav-buttons'>
           {logoutButton(props.currentUser)}{' '}
           {renderHomeLink()}
         </span>

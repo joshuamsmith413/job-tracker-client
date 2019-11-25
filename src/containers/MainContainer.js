@@ -1,5 +1,4 @@
 import React from 'react';
-import AuthContainer from './AuthContainer.js';
 import HomeContainer from './HomeContainer.js';
 import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';

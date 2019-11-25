@@ -43,7 +43,7 @@ const RegisterModal = props => {
 
   return (
     <span id='RegisterModal'>
-      <Button variant="link" onClick={handleShow}>
+      <Button onClick={handleShow}>
         Register
       </Button>
       <Modal show={show} onHide={handleClose}>

@@ -46,7 +46,7 @@ const EditApp = props => {
   }
 
   return(
-    <div id="EditApp">
+    <div className='form-div'>
     <form onSubmit={handleSubmit}>
       <label>Company Name:</label>
         <input type='text' name='company' value={company} onChange={handleCompanyInput}/><br/>

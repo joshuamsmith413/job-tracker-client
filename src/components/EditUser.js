@@ -31,11 +31,11 @@ const EditUser = props => {
       const params = {name, password, newPassword}
       const response = await API.updateUser(params, props.currentUser.id)
       const data = await response.json()
-      return data.error ? setError(data.error) : props.dispatch(login(data)), props.history.push(`/`)
+      return data.error ? setError(data.error) : (props.dispatch(login(data)), props.history.push(`/`))
     }
 
     const deleteUser = async() => {
-      const response = await API.destroyUser(props.currentUser.id)
+      API.destroyUser(props.currentUser.id)
       props.dispatch(logout())
       localStorage.removeItem("token")
       props.dispatch(dropApps())
@@ -62,7 +62,7 @@ const EditUser = props => {
     const renderError = () => error ? <div className='error'>{error}</div> : null
 
     return(
-      <div id='edit-user'>
+      <div className='form-div'>
         <form onSubmit={handleSubmit}>
           <label>Edit Name</label>
             <input type='text' value={name} onChange={handleNameInput}/><br/>

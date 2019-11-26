@@ -34,9 +34,9 @@ const SourceButtons = props => {
         const buttonName = sources[0].match(/\.([^]+)\./)
         console.log(buttonName[1])
         return (
-          <span className="job-sites-buttons">
+          <div className="job-sites-buttons">
             <Button href={`${sources[0]}`} target="_blank" rel="noopener noreferrer">{buttonName[1]}</Button>
-          </span>
+          </div>
         )
       }
     }

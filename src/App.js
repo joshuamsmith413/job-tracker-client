@@ -17,6 +17,7 @@ const App = props => {
     .then(r => r.json())
     .then(data => {
       if (!data.error) {
+        console.log('app')
         props.dispatch(login(data))
       }
     })

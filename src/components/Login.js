@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { login, getApps } from '../actions';
+import { login } from '../actions';
 import { withRouter } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import RegisterModal from './RegisterModal';
@@ -17,11 +17,6 @@ const Login = props => {
 
   const handlePasswordInput = e => setPassword(e.target.value)
 
-  const resetFields = () => {
-    setName('');
-    setPassword('');
-  }
-
   const handleLogin = async(e) => {
     e.preventDefault()
     const params = {name, password}
@@ -32,12 +27,7 @@ const Login = props => {
     } else if (data.id) {
       props.dispatch(login(data))
       localStorage.setItem('token', data.token)
-      props.history.push(`/`)
-      const res = await API.getUserApps(data)
-      const datas = await res.json()
-      props.dispatch(getApps(datas))
     }
-    resetFields()
   }
 
   const renderError = () => error ? <div className='error'>{error}</div> : null

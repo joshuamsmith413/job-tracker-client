@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 const JobAppDisplay = props => {
 
-  if (props) {
+
 
     const renderCurrent = apps => {
       if(apps.length > 0) {
@@ -100,9 +100,7 @@ const JobAppDisplay = props => {
           </div>
       </div>
     )
-  } else {
-    return null
-  }
+
 }
 
 const mapStateToProps = state => {

@@ -9,7 +9,7 @@ import EditApp from '../components/EditApp.js';
 const MainContainer = props => {
 
   return (
-    <div id="MainContainer">
+    <div id="main-container">
       <Navbar />
       <Route exact path="/" component={HomeContainer} />
       <Route path="/edit/user" render={() => <EditUser />} />

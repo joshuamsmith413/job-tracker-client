@@ -42,7 +42,7 @@ const RegisterModal = props => {
   const handleShow = () => setShow(true);
 
   return (
-    <span id='RegisterModal'>
+    <span id='register-modal'>
       <Button onClick={handleShow}>
         Register
       </Button>

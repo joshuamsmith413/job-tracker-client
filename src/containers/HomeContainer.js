@@ -6,7 +6,7 @@ const HomeContainer = (props) => {
 
 
   return(
-    <div id='HomeContainer'>
+    <div id='home-container'>
       <ProfileContainer />
     </div>
   )

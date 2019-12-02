@@ -8,7 +8,7 @@ const ShowCompanyLink = props => {
   const [modalShow, setModalShow] = useState(false)
 
   return (
-    <div className="ShowCompanyLink" key={props.app.id}>
+    <div className="show-company-link" key={props.app.id}>
       <Button variant='link' onClick={() => setModalShow(true)}>
         {props.app.company}
       </Button >

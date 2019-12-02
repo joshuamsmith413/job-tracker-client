@@ -78,24 +78,24 @@ const JobAppDisplay = props => {
 
     return (
       <div id='job-app-display'>
-          <div className='job-app-display-child' id='currentApp'>
+          <div className='job-app-display-child' id='current-app'>
             <h5>Current</h5>
             {renderCurrent(props.jobApps)}
           </div>
-          <div className='job-app-display-child' id='checkedInApp'>
+          <div className='job-app-display-child' id='checked-in-app'>
             <h5>Checkin</h5>
             {renderWeekCheckup(props.jobApps)}
           </div>
-          <div className='job-app-display-child' id='responseApp'>
+          <div className='job-app-display-child' id='response-app'>
             <h5>Responded</h5>
             {renderResponse(props.jobApps)}
           </div>
-          <div className='job-app-display-child' id='interviewApp'>
-            <h5>Interviewed</h5><br/>
+          <div className='job-app-display-child' id='interview-app'>
+            <h5>Interviewed</h5>
             {renderInterview(props.jobApps)}
           </div>
-          <div className='job-app-display-child' id='archiveApp'>
-            <h5>Archived</h5><br/>
+          <div className='job-app-display-child' id='archive-app'>
+            <h5>Archived</h5>
             {renderArchive(props.jobApps)}
           </div>
       </div>
